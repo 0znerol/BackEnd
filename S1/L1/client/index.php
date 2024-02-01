@@ -34,11 +34,11 @@
     <div>
       <?php
         $matches = [
-            "Match 1" => [
+            "Partita 1" => [
                 "Juventus" => $serieA["Juventus"],
                 "Inter" => $serieA["Inter"],
             ],
-            "Match 2" => [
+            "Partita 2" => [
               "Milan" => $serieA["Milan"],
               "Verona" => $serieA["Verona"],
           ],
@@ -46,7 +46,7 @@
         ];
 
         foreach ($matches as $match => $teams) {
-            echo "Partita: $match<br>";
+            echo "$match:<br>";
             foreach ($teams as $team => $players) {
                 echo "Squadra: $team<br>";
                 echo "Formazione:<br>";
