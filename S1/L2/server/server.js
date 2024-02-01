@@ -25,6 +25,7 @@ import mariadb from "mariadb";
 // });
 
 const phpServer = spawn("php", ["-S", "localhost:4000", "-t", "../client"]);
+console.log(`PHP server: http://localhost:4000`);
 
 phpServer.stdout.on("data", (data) => {
   console.log(`PHP server: ${data}`);

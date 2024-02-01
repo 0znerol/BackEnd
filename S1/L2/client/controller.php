@@ -12,11 +12,13 @@
             }
             echo "<h3>"."Email: " . $_POST['email'] ."</h3>"."<h3>"."Name: " . $_POST['name'] ."</h3>". "<br>" ."<h4>". "password: " . $safePass ."</h4>";
 
-            session_start(); // inizializza una sessione su browser del client
-            $_SESSION = [
+            session_start();
+            $_SESSION['safeLogin'] = [
+                
                 'name' => $_POST['name'],
                 'email' => $_POST['email'], 
                 'password' => $safePass
+
             ];
             
             session_write_close();

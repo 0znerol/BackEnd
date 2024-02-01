@@ -8,23 +8,30 @@
   </head>
   <body class='row'>
     <form class='row w-75 m-auto' action="controller.php" method="POST">
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name"><br>
-      <label for="email">Email:</label><br>
-      <input type="text" id="email" name="email"><br>
-      <label for="password">Password:</label><br>
-      <input type="password" id="password" name="password"></input><br>
-      <input type="submit" value="Submit">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password"></input>
+      <input class="w-25 mt-2" type="submit" value="Submit">
     </form>
 
     <div class="row mt-5">
-        <?php
-          session_start();
-          if($_SESSION){
-            echo '<h1>logged as</h1>';
-            echo "<h3>"."Email: " . $_SESSION['email'] ."</h3>"."<h3>"."Name: " . $_SESSION['name'] ."</h3>". "<br>" ."<h4>". "password: " . $_SESSION['password'] ."</h4>";
-          }
-        ?>
-  
+      <?php
+        session_start();
+        if($_SESSION['safeLogin']){
+          echo '<h1>logged as</h1>';
+          echo "<h3>"."Email: " . $_SESSION['safeLogin']['email'] ."</h3>"."<h3>"."Name: " . $_SESSION['safeLogin']['name'] ."</h3>". "<br>" ."<h4>". "password: " . $_SESSION['safeLogin']['password'] ."</h4>";
+          echo '<form action="logout.php" method="POST">
+                  <input type="submit" value="logout">
+                </form>';
+        }
+      ?>
+
+    </div>
+
+
+
   </body>
 </html>
