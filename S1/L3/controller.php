@@ -69,7 +69,7 @@
                             if(move_uploaded_file($_FILES['file']["tmp_name"], $target_dir.$file_name)) {
                                 echo 'Caricamento avvenuto con successo';
                                 $_SESSION['safeLogin']['img'] = $file_name;
-                                // header('Location: http://localhost:6060/S1L3/index.php');
+                                // header('Location: http://localhost:6060/BackEnd/S1/L3/index.php');
 
                             } else {
                                 echo 'Errore!!!';

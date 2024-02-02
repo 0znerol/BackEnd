@@ -28,7 +28,7 @@ if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password']))
         
                     ];
                     
-                    header('Location: http://localhost:6060/S1L3/index.php');
+                    header('Location: http://localhost:6060/BackEnd/S1/L3/index.php');
 
                     
                 }

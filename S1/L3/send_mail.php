@@ -71,7 +71,7 @@ try {
 
     $mail->send();
     echo 'Message has been sent';
-    header('Location: http://localhost:6060/S1L3/index.php');
+    header('Location: http://localhost:6060/BackEnd/S1/L3/index.php');
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
