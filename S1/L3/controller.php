@@ -15,12 +15,13 @@
             session_start();
             $_SESSION['safeLogin'] = [
                 
+
+
                 'name' => $_POST['name'],
                 'email' => $_POST['email'], 
                 'password' => $safePass
 
             ];
-            var_dump($_SESSION['safeLogin']);
             if (!isset($_SESSION['loginData'])) {
                 $_SESSION['loginData'] = [];
             }else{
