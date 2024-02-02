@@ -13,7 +13,6 @@
       
       <?php
         session_start();
-          var_dump($_SESSION['loginData']);
         if(isset($_SESSION['safeLogin'])){?>
           <div>
             <h1>logged as</h1>
