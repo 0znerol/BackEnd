@@ -1,0 +1,12 @@
+{
+    "name": "oz/s1l3",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "authors": [
+        {
+            "name": "oznerol",
+            "email": "lorenzo.pezzica98@gmail.com"
+        }
+    ]
+}
