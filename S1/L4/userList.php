@@ -35,7 +35,9 @@ if($mysqli->connect_error) { die($mysqli->connect_error); }
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Password</th>
-      <th scope="col"></th>
+      <th scope="col">Delete</th>
+      <th scope="col">Modify</th>
+
     </tr>
   </thead>
   <tbody>
@@ -48,12 +50,14 @@ if($mysqli->connect_error) { die($mysqli->connect_error); }
       <td>
         <form action="deleteUsr.php" method="get">
             <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-            <input type="submit" class="bg-danger border-0 rounded" value="delete">
+            <input type="submit" class="bg-danger border-0 rounded w-100" value="">
         </form>  
+      </td>
+      <td>
         <form action="modUsr.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             <input type="hidden" name="email" value="<?php echo $row['email']; ?>">
-            <input type="submit" class="bg-warning border-0 rounded" value="Mod">
+            <input type="submit" class="bg-warning border-0 rounded w-100" value="">
         </form>
       </td>
 
