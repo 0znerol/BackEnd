@@ -1,0 +1,63 @@
+<?php 
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+    require_once 'config.php';
+    $mysqli = new mysqli(
+        $config['host'],
+        $config['username'],
+        $config['password'],
+        $config['database']
+        );
+if($mysqli->connect_error) { die($mysqli->connect_error); } 
+# else { var_dump($mysqli);}
+    $riga = [];
+    $sql = "SELECT * FROM users";
+    $result = $mysqli->query($sql);
+    if ($result->num_rows > 0) {
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $row["password"] = str_repeat('*', strlen($row["password"]));
+            array_push($riga, $row);
+        }
+    } else {
+        // echo "No data found.";
+    }
+
+    $mysqli->close();
+
+?>
+
+<h3 class='text-center'>User List</h3>
+<table class="table text-center mt-5 w-75 m-auto" data-bs-theme="dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($riga as $row) { ?>
+    <tr>
+      <th scope="row">1</th>
+      <td><?php echo $row["name"] ?></td>
+      <td><?php echo $row["email"] ?></td>
+      <td><?php echo $row["password"] ?></td>
+      <td>
+        <form action="deleteUsr.php" method="get">
+            <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+            <input type="submit" class="bg-danger border-0 rounded" value="delete">
+        </form>  
+        <form action="modUsr.php" method="POST">
+            <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+            <input type="hidden" name="email" value="<?php echo $row['email']; ?>">
+            <input type="submit" class="bg-warning border-0 rounded" value="Mod">
+        </form>
+      </td>
+
+    </tr>
+    <?php } ?>
+  </tbody>
+</table>
