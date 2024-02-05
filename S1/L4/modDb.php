@@ -21,7 +21,6 @@
         $password = $_POST['password'];
         $id = $_POST['id']; 
 
-        //Perform the database insert operation
         $query = "UPDATE users SET name = '$name', email = '$email', password = 'password' WHERE id = '$id'";
         $result = $mysqli->query($query);
         var_dump($_POST);

@@ -15,7 +15,6 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Perform the database insert operation
         $query = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
         $result = $mysqli->query($query);
 

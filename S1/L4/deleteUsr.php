@@ -14,7 +14,6 @@ var_dump($_GET['id']);
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
-    // Perform the database insert operation
     $query = "DELETE FROM users WHERE id = '$_GET[id]'";
     $result = $mysqli->query($query);
 

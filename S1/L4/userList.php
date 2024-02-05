@@ -14,7 +14,6 @@ if($mysqli->connect_error) { die($mysqli->connect_error); }
     $sql = "SELECT * FROM users";
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
-        // Output data of each row
         while ($row = $result->fetch_assoc()) {
             $row["password"] = str_repeat('*', strlen($row["password"]));
             array_push($riga, $row);
@@ -57,6 +56,8 @@ if($mysqli->connect_error) { die($mysqli->connect_error); }
         <form action="modUsr.php" method="POST">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             <input type="hidden" name="email" value="<?php echo $row['email']; ?>">
+            <input type="hidden" name="name" value="<?php echo $row['name']; ?>">
+            <input type="hidden" name="password" value="<?php echo $row['password']; ?>">
             <input type="submit" class="bg-warning border-0 rounded w-100" value="">
         </form>
       </td>

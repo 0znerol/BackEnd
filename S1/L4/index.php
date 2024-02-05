@@ -16,19 +16,19 @@ session_start();
              <?php 
 
                   if($_SESSION['is_modding']){?>
-                     <h3 class='text-center'>Mod <?php echo $_SESSION['modName'] ?></h3>
+                     <h3 class='text-center'>Mod <?php echo $_SESSION['modMail'] ?></h3>
                      <form action="modDb.php" method="POST" class="w-75 m-auto">
                              <div class="mb-3">
                                      <label for="name" class="form-label">Name</label>
-                                     <input type="text" class="form-control" id="name" name="name" aria-describedby="name">
+                                     <input type="text" value="<?php echo $_SESSION['modName'] ?>"  class="form-control" id="name" name="name" aria-describedby="name">
                              </div>
                              <div class="mb-3">
                                      <label for="email" class="form-label">Email address</label>
-                                     <input type="email" class="form-control" id="email" name="email" aria-describedby="email">
+                                     <input type="email" value="<?php echo $_SESSION['modMail'] ?>" class="form-control" id="email" name="email" aria-describedby="email">
                              </div>
                              <div class="mb-3">
                                      <label for="password" class="form-label">Password</label>
-                                     <input type="password" class="form-control" id="password" name="password">
+                                     <input type="password" value="<?php echo $_SESSION['modPass'] ?>" class="form-control" id="password" name="password">
                              </div>
                              <input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
                              <button type="submit" value="Submit" class="btn btn-success">Submit</button>
