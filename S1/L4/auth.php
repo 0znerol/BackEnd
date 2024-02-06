@@ -2,7 +2,6 @@
 session_start();
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    var_dump($_POST);
 
 
 
@@ -23,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            if($row['password'] === $_POST['password']){
+            if(password_verify($_POST['password'], $row['password'])){
                 echo '<h1>db email: </h1>'.$row['email']."<br/>";
                 echo '<h1>inserted Pass: </h1>'.$_POST['password']."<br/>";
 
@@ -31,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $_SESSION['is_modding'] = true;
                 var_dump($_SESSION);
                 header('Location: http://localhost:6060/BackEnd/S1/L4/index.php');
-            }
+            }else header('Location: http://localhost:6060/BackEnd/S1/L4/index.php');
             // $row["password"] = str_repeat('*', strlen($row["password"]));
             array_push($riga, $row);
         }

@@ -45,7 +45,7 @@ if($mysqli->connect_error) { die($mysqli->connect_error); }
       <th scope="row">1</th>
       <td><?php echo $row["name"] ?></td>
       <td><?php echo $row["email"] ?></td>
-      <td><?php echo $row["password"] ?></td>
+      <td><?php echo str_repeat('*', strlen($row["password"])/4) ?></td>
       <td>
         <form action="deleteUsr.php" method="get">
             <input type="hidden" name="id" value="<?php echo $row['id'] ?>">

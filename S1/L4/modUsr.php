@@ -5,12 +5,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $_SESSION['id'] = $_POST['id'];
     $_SESSION['modMail'] = $_POST['email'];
     $_SESSION['modName'] = $_POST['name'];
-
-
-
     // header('Location: http://localhost:6060/BackEnd/S1/L4/index.php');
-
-    
 }
 ?>
 <!doctype html>
@@ -25,10 +20,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
  </body>
 </html>
     <form action="auth.php" method="POST" class="w-75 m-auto">
-            <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" value="" class="form-control" id="password" name="password" aria-describedby="password">
-            </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" value="" class="form-control" id="password" name="password" aria-describedby="password">
+        </div>
             <input type="hidden" name="id" value="<?php echo $_POST['id']; ?>">
             <button type="submit" value="Submit" class="btn btn-success">Submit</button>
     </form>

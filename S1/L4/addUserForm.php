@@ -1,7 +1,7 @@
 <?php 
     
 ?>
-<div class="row">
+<div class="row p-0 ps-4">
 <h3 class='text-center'>Add User</h3>
 <form action="addUser.php" method="POST" class="w-75 m-auto">
     <div class="mb-3">
