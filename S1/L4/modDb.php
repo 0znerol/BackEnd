@@ -18,10 +18,9 @@
 
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $password = $_POST['password'];
         $id = $_POST['id']; 
 
-        $query = "UPDATE users SET name = '$name', email = '$email', password = 'password' WHERE id = '$id'";
+        $query = "UPDATE users SET name = '$name', email = '$email' WHERE id = '$id'";
         $result = $mysqli->query($query);
         var_dump($_POST);
 

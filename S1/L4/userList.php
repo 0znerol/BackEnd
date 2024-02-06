@@ -15,7 +15,7 @@ if($mysqli->connect_error) { die($mysqli->connect_error); }
     $result = $mysqli->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
-            $row["password"] = str_repeat('*', strlen($row["password"]));
+            // $row["password"] = str_repeat('*', strlen($row["password"]));
             array_push($riga, $row);
         }
     } else {

@@ -1,6 +1,7 @@
 <?php 
     
 ?>
+<div class="row">
 <h3 class='text-center'>Add User</h3>
 <form action="addUser.php" method="POST" class="w-75 m-auto">
     <div class="mb-3">
@@ -17,3 +18,4 @@
     </div>
     <button type="submit" value="Submit" class="btn btn-success">Submit</button>
 </form>
+</div>
