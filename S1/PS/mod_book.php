@@ -19,8 +19,7 @@ if ($mysqli->connect_error) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var_dump($_POST);
 
-
-    $query = "UPDATE books SET title = '$_POST[title]', author = '$_POST[author]', relese = '$_POST[relese]', genere = '$_POST[genere]' WHERE id = '$_POST[id]'";
+    $query = "UPDATE books SET titolo = '$_POST[title]', autore = '$_POST[author]', anno_pubblicazione = '$_POST[relese]', genere = '$_POST[genere]' WHERE id = '$_POST[id]'";
 
     $result = $mysqli->query($query);
 

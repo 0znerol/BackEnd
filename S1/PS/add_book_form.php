@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!doctype html>
 <html lang="en">
 
@@ -15,7 +11,7 @@
 
 <body data-bs-theme="dark" class='bg-dark-subtle'>
   <div>
-    <form action='add_book.php' method="POST">
+    <form action='add_book.php' method="POST" enctype="multipart/form-data">
       <fieldset>
         <legend>Add A Book</legend>
         <div class="mb-3">
@@ -27,17 +23,21 @@
           <input type="text" id="author" name="author" class="form-control" placeholder="author">
         </div>
         <div class="mb-3">
-          <label for="relese" class="form-label">Relese</label>
-          <input type="date" id="relese" class="form-control" placeholder="relese" name='relese'>
+          <label for="relese" class="form-label">Release</label>
+          <input type="date" id="release" class="form-control" placeholder="release" name='release'>
         </div>
         <div class="mb-3">
-          <label for="select" class="form-label">Disabled select menu</label>
-          <select id="select" name="genere" class="form-select">
+          <label for="select" class="form-label">Genre</label>
+          <select id="select" name="genre" class="form-select">
             <option>Fantasy</option>
             <option>Horror</option>
             <option>Sci-fi</option>
             <option>Other</option>
           </select>
+        </div>
+        <div class="mb-3">
+          <label for="file" class="form-label">Upload File</label>
+          <input type="file" id="file" name="file" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
