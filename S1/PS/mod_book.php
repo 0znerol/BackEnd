@@ -4,7 +4,6 @@ ini_set('display_errors', 1);
 session_start();
 $_SESSION['is_modding'] = false;
 
-
 require_once 'config.php';
 
 $mysqli = new mysqli(
@@ -17,21 +16,19 @@ if ($mysqli->connect_error) {
     die($mysqli->connect_error);
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    var_dump($_POST);
-
-    $query = "UPDATE books SET titolo = '$_POST[title]', autore = '$_POST[author]', anno_pubblicazione = '$_POST[relese]', genere = '$_POST[genere]' WHERE id = '$_POST[id]'";
-
-    $result = $mysqli->query($query);
-
-    if ($result) {
-        echo "User added successfully!";
-        header('Location: http://localhost:6060/BackEnd/S1/PS/index.php');
-
+    $query = "UPDATE books SET titolo = ?, autore = ?, anno_pubblicazione = ?, genere = ? WHERE id = ?";
+    $stmt = $mysqli->prepare($query);
+    if (!$stmt) {
+        echo "Error preparing statement: " . $mysqli->error;
     } else {
-        echo "Error adding user: " . $mysqli->error;
+        $stmt->bind_param('ssisi', $_POST['title'], $_POST['author'], $_POST['relese'], $_POST['genere'], $_POST['id']);
+        if ($stmt->execute()) {
+            echo "Book updated successfully!";
+            header('Location: http://localhost:6060/BackEnd/S1/PS/index.php');
+            exit();
+        } else {
+            echo "Error updating book: " . $mysqli->error;
+        }
+        $stmt->close();
     }
-
-    // header('Location: http://localhost:6060/BackEnd/S1/PS/index.php');
 }
-
-?>
