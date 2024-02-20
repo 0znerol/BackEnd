@@ -31,7 +31,7 @@ export default function User({ userId }) {
       console.log(user.name);
       return (
         <Grid container style={{ backgroundColor: "#222529" }}>
-          <div>
+          <div style={{ borderBottom: "1px solid black" }}>
             <h2 style={{ color: "white" }}>
               <Link
                 to={`/user/${user.id}`}

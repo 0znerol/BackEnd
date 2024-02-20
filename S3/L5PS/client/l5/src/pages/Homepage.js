@@ -9,17 +9,39 @@ export default function Homepage() {
       container
       spacing={2}
       justifyContent={"space-between"}
-      style={{ backgroundColor: "#222529" }}
+      // style={{ backgroundColor: "#222529" }}
     >
-      <Grid item xs={12} md={9} style={{ border: "1px solid black" }}>
+      <Grid
+        item
+        xs={12}
+        md={8}
+        style={{
+          borderTop: "1px solid black",
+          borderLeft: "1px solid black",
+          borderRight: "1px solid black",
+
+          backgroundColor: "#222529",
+        }}
+      >
         <h1 style={{ color: "#F3DBF9", margin: 0, marginBottom: 20 }}>Posts</h1>
         <Grid container spacing={2}>
           <HomePost />
         </Grid>
       </Grid>
-      <Grid item xs={12} md={3} style={{ border: "1px solid black" }}>
+      <Grid
+        item
+        xs={12}
+        md={3}
+        style={{ border: "1px solid black", backgroundColor: "#222529" }}
+      >
         <h1 style={{ color: "#F3DBF9", margin: 0, marginBottom: 20 }}>Users</h1>
-        <HomeUsers />
+        <Grid
+          container
+          spacing={2}
+          style={{ borderTop: "1px solid black", backgroundColor: "#222529" }}
+        >
+          <HomeUsers />
+        </Grid>
       </Grid>
     </Grid>
   );
