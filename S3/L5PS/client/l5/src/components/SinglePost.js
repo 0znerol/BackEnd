@@ -36,10 +36,12 @@ export default function SinglePost({ post, location }) {
         {location == "home" && (
           <>
             <Link style={{ color: "#F3DBF9" }} to={`/post/${post.id}`}>
-              <h2 style={{ color: "#F3DBF9" }}>{post.title.rendered}</h2>
+              <h1 style={{ color: "#F3DBF9", fontSize: "3em" }}>
+                {post.title.rendered}
+              </h1>
             </Link>
             <div
-              style={{ color: "#F3DBF9" }}
+              style={{ color: "#F3DBF9", fontSize: "1.5em" }}
               dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
             />
             <Link style={{ color: "#F3DBF9" }} to={`/post/${post.id}`}>

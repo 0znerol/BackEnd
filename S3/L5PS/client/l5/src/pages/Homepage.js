@@ -8,13 +8,14 @@ export default function Homepage() {
     <Grid
       container
       spacing={2}
-      justifyContent={"space-between"}
+      justifyContent={"space-around"}
 
       // style={{ backgroundColor: "#222529" }}
     >
       <Grid
         item
         xs={12}
+        sm={12}
         md={8}
         style={{
           // borderTop: "1px solid black",
@@ -22,6 +23,7 @@ export default function Homepage() {
           // borderRight: "1px solid black",
           borderRadius: 10,
           backgroundColor: "#524159",
+          // margin: 1,
         }}
       >
         <h1 style={{ color: "#F3DBF9", margin: 0, marginBottom: 20 }}>Posts</h1>
@@ -32,6 +34,7 @@ export default function Homepage() {
       <Grid
         item
         xs={12}
+        sm={12}
         md={3}
         style={{
           border: "1px solid black",

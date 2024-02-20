@@ -27,6 +27,7 @@ export default function User({ userId }) {
 
   console.log(params.userId);
   if (!userId && users && !params.userId) {
+    //home sideBar
     return users.map((user, index) => {
       console.log(user.name);
       return (
@@ -41,7 +42,7 @@ export default function User({ userId }) {
               marginRight: "2em",
             }}
           >
-            <h2 style={{ color: "#F3DBF9" }}>
+            <h2 style={{ color: "#F3DBF9", fontSize: "1em" }}>
               <Link
                 to={`/user/${user.id}`}
                 style={{
@@ -53,12 +54,17 @@ export default function User({ userId }) {
                 {user.name}
               </Link>{" "}
             </h2>
-            <img src={user.avatar_urls[48]} alt="user_img" style={{}} />
+            <img
+              src={user.avatar_urls[48]}
+              alt="user_img"
+              style={{ borderRadius: "50%" }}
+            />
           </div>
         </Grid>
       );
     });
-  } else if ((params.userId && users) || (userId && users)) {
+  } else if (userId && users) {
+    //home Post
     const user = users.find(
       (user) => user.id == params.userId || user.id == userId
     );
@@ -76,6 +82,43 @@ export default function User({ userId }) {
       );
     } else {
       return <div>User not found</div>;
+    }
+  } else if (params.userId && users) {
+    //user Page
+    const user = users.find((user) => user.id == params.userId);
+    if (user) {
+      console.log(user);
+      return (
+        <Grid
+          container
+          style={{
+            display: "flex",
+            borderRadius: 10,
+            backgroundColor: "#524159",
+          }}
+        >
+          <Grid item md={6} style={{ flexDirection: "column" }}>
+            <h1 style={{ color: "#F3DBF9" }}>{user.name}</h1>
+            <p style={{ fontSize: "1.5em", color: "#F3DBF9" }}>
+              {user.description}
+            </p>
+          </Grid>
+          <Grid
+            item
+            md={6}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <img
+              src={user.avatar_urls[96]}
+              alt="user_img"
+              style={{ alignSelf: "end", margin: "10px", borderRadius: "50%" }}
+            />
+          </Grid>
+        </Grid>
+      );
     }
   }
 }
