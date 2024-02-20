@@ -13,7 +13,6 @@ function App() {
         container
         style={{
           backgroundColor: "#1B1C1E",
-          // overflowX: "hidden",
           width: "100vw",
           minHeight: "100vh",
           padding: 10,
@@ -26,9 +25,6 @@ function App() {
           <Routes>
             <Route path="/post/:postid" element={<Postpage />} />
             <Route path="/user/:userId" element={<User />} />
-            {/* <Route path="/user">
-              <Users />
-            </Route> */}
             <Route path="/" element={<Homepage />} />
           </Routes>
         </Grid>

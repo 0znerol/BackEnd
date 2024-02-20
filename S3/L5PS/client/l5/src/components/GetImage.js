@@ -15,10 +15,12 @@ export default function GetImage({ media }) {
       style={{
         display: "flex",
         justifyContent: "flex-end",
+        alignItems: "center",
         margin: "10px",
+        height: "100%",
       }}
     >
-      <img src={image} alt="post_img" style={{ width: "50%" }} />
+      <img src={image} alt="post_img" style={{ padding: 10, width: "70%" }} />
     </div>
   );
 }

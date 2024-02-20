@@ -14,16 +14,12 @@ export default function HomePost() {
       });
   }, []);
   return (
-    <Grid
-      item
-      xs={12}
-      md={12}
-      style={{ borderTop: "1px solid black", borderLeft: "1px solid black" }}
-    >
+    <Grid item xs={12} md={12} style={{ borderTop: "1px solid black" }}>
       {posts &&
         posts.map((post) => (
           <SinglePost key={post.id} post={post} location={"home"} />
         ))}
+      {!posts && <h1 style={{ color: "#F3DBF9" }}>Loading...</h1>}
     </Grid>
   );
 }

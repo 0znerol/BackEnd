@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { Grid } from "@mui/material";
 export default function NavBar() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, border: "1px #524159 solid" }}>
       <AppBar position="static">
         <Toolbar style={{ backgroundColor: "black" }}>
           <IconButton

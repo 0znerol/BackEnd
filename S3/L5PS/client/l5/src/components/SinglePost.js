@@ -11,35 +11,57 @@ export default function SinglePost({ post, location }) {
     "..."
   );
   return (
-    <Grid container key={post.id} style={{ borderBottom: "1px solid black" }}>
-      <Grid md={6} item style={{ paddingLeft: "2em" }}>
+    <Grid
+      container
+      key={post.id}
+      style={{
+        borderBottom: "1px solid black",
+        backgroundColor: "#524159",
+        ...(location == "post" && {
+          borderRadius: 10,
+          borderTop: "1px solid black",
+        }),
+      }}
+    >
+      <Grid
+        md={6}
+        item
+        style={{
+          paddingLeft: "2em",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
         {location == "home" && (
           <>
-            <Link style={{ color: "white" }} to={`/post/${post.id}`}>
-              <h2 style={{ color: "white" }}>{post.title.rendered}</h2>
+            <Link style={{ color: "#F3DBF9" }} to={`/post/${post.id}`}>
+              <h2 style={{ color: "#F3DBF9" }}>{post.title.rendered}</h2>
             </Link>
             <div
-              style={{ color: "white" }}
+              style={{ color: "#F3DBF9" }}
               dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
             />
-            <Link style={{ color: "white" }} to={`/post/${post.id}`}>
+            <Link style={{ color: "#F3DBF9" }} to={`/post/${post.id}`}>
               Read More
             </Link>
           </>
         )}
         {location == "post" && (
-          <>
-            <h2 style={{ color: "white" }}>{post.title.rendered}</h2>
+          <Grid container spacing={2}>
+            <h1 style={{ color: "#F3DBF9", fontSize: "3em" }}>
+              {post.title.rendered}
+            </h1>
 
             <div
-              style={{ color: "white" }}
+              style={{ color: "#F3DBF9", fontSize: "1.5em" }}
               dangerouslySetInnerHTML={{ __html: post.content.rendered }}
             />
-          </>
+          </Grid>
         )}
         {}
 
-        <p style={{ color: "white" }}>Posted on: {post.date.slice(0, 10)}</p>
+        <p style={{ color: "#F3DBF9" }}>Posted on: {post.date.slice(0, 10)}</p>
 
         <User userId={post.author}></User>
       </Grid>

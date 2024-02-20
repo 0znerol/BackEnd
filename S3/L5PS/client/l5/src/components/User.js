@@ -27,20 +27,33 @@ export default function User({ userId }) {
 
   console.log(params.userId);
   if (!userId && users && !params.userId) {
-    return users.map((user) => {
+    return users.map((user, index) => {
       console.log(user.name);
       return (
-        <Grid container style={{ backgroundColor: "#222529" }}>
-          <div style={{ borderBottom: "1px solid black" }}>
-            <h2 style={{ color: "white" }}>
+        <Grid key={index} container>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              borderBottom: "1px solid black",
+              width: "100%",
+              marginLeft: "2em",
+              marginRight: "2em",
+            }}
+          >
+            <h2 style={{ color: "#F3DBF9" }}>
               <Link
                 to={`/user/${user.id}`}
-                style={{ color: "white", textDecoration: "none" }}
+                style={{
+                  color: "#F3DBF9",
+                  textDecoration: "none",
+                  margin: "auto",
+                }}
               >
                 {user.name}
               </Link>{" "}
-              <img src={user.avatar_urls[24]} alt="user_img" />
             </h2>
+            <img src={user.avatar_urls[48]} alt="user_img" style={{}} />
           </div>
         </Grid>
       );
@@ -53,9 +66,9 @@ export default function User({ userId }) {
       console.log(user);
       return (
         <div>
-          <p style={{ color: "white" }}>
+          <p style={{ color: "#F3DBF9" }}>
             Author :{" "}
-            <Link to={`/user/${user.id}`} style={{ color: "white" }}>
+            <Link to={`/user/${user.id}`} style={{ color: "#F3DBF9" }}>
               {user.name}
             </Link>
           </p>
