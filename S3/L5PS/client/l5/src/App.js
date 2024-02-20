@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Postpage from "./pages/Postpage";
+import User from "./components/User";
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
         <Grid item xs={12} style={{ marginTop: "1em", padding: 10 }}>
           <Routes>
             <Route path="/post/:postid" element={<Postpage />} />
+            <Route path="/user/:userId" element={<User />} />
             {/* <Route path="/user">
               <Users />
             </Route> */}

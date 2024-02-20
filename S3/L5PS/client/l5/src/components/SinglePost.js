@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import GetImage from "./GetImage";
+import User from "./User";
 export default function SinglePost({ post, location }) {
   post.excerpt.rendered = post.excerpt.rendered.replace(
     /<a href=".*?".*?<\/a>/,
     "..."
   );
-  console.log(location == "home");
   return (
     <Grid container key={post.id}>
       <Grid md={6} item style={{ paddingLeft: "2em" }}>
@@ -29,7 +29,8 @@ export default function SinglePost({ post, location }) {
           Read More
         </Link>
         <p style={{ color: "white" }}>Posted on: {post.date}</p>
-        <p style={{ color: "white" }}>Author: {post.author}</p>
+
+        <User userId={post.author}></User>
       </Grid>
       <Grid md={6} item>
         <GetImage media={post.featured_media}></GetImage>

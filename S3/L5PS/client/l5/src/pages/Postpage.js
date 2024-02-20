@@ -7,16 +7,13 @@ import SinglePost from "../components/SinglePost";
 export default function Postpage() {
   const [post, setPost] = useState(null);
   const params = useParams();
-  console.log(params);
   useEffect(() => {
     fetch(
       `http://localhost:6060/BackEnd/S3/L5PS/wordpress/index.php/wp-json/wp/v2/posts/${params.postid}`
     )
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
         setPost(json);
-        console.log(post);
       });
   }, [params.postid]);
 
