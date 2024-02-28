@@ -18,6 +18,7 @@ if ($users->num_rows > 0) {
     }
     fclose($file);
     echo "CSV file created successfully!";
+    header("Location: index.php");
 } else {
     echo "No data found in the users table.";
 }
