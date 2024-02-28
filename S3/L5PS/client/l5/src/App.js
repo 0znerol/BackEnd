@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Postpage from "./pages/Postpage";
 import User from "./components/User";
+import SearchPage from "./pages/SearchPage";
 function App() {
   return (
     <Router>
@@ -26,6 +27,7 @@ function App() {
             <Route path="/post/:postid" element={<Postpage />} />
             <Route path="/user/:userId" element={<User />} />
             <Route path="/" element={<Homepage />} />
+            <Route path="/search/:searchValue" element={<SearchPage />} />
           </Routes>
         </Grid>
       </Grid>

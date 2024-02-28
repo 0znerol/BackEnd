@@ -1,14 +1,23 @@
 import React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import {
+  IconButton,
+  Grid,
+  TextField,
+  Button,
+  Toolbar,
+  AppBar,
+  Box,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 export default function NavBar() {
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const searchValue = e.target.search.value;
+    console.log(e);
+    navigate(`/search/${searchValue}`);
+  };
   return (
     <Box sx={{ flexGrow: 1, border: "1px #524159 solid" }}>
       <AppBar position="static">
@@ -30,7 +39,25 @@ export default function NavBar() {
               Home
             </Link>
           </Grid>
-          <Button color="inherit">Login</Button>
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
+            <input name="search" type="text" />
+          </form>
+          <TextField
+            id="outlined-basic"
+            label="Search"
+            variant="outlined"
+            // backgroundColor="white"
+            style={{
+              backgroundColor: "#524159",
+              margin: "0.5em",
+              borderRadius: 5,
+            }}
+            onSubmit={(e) => handleSubmit(e)}
+          />
         </Toolbar>
       </AppBar>
     </Box>
