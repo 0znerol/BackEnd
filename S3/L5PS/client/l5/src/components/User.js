@@ -52,7 +52,7 @@ export default function User({ userId }) {
                 }}
               >
                 {user.name}
-              </Link>{" "}
+              </Link>
             </h2>
             <img
               src={user.avatar_urls[48]}
