@@ -21,8 +21,8 @@
           $modalForm = new FormCreator('mod.php', 'post');
           $modalForm->label('username', 'Username');
           $modalForm->input('text', 'username', $user['username']);
-          $modalForm->label('email', 'Email');
-          $modalForm->input('email', 'email', $user['email']);
+        //   $modalForm->label('email', 'Email');
+          $modalForm->input('hidden', 'email', $user['email']);
           $modalForm->label('password', 'Password');
           $modalForm->input('password', 'password');
           $modalForm->input('submit', 'submit', 'Save changes');

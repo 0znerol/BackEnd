@@ -14,27 +14,30 @@ mysqli_stmt_bind_param($stmt, "s", $_POST['email']);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 if (mysqli_num_rows($result) > 0) {
-    // session_destroy();
     session_start();
 
     while ($row = mysqli_fetch_assoc($result)) {
-        // print_r($row['pass']);
         if (password_verify($_POST['password'], $row['pass'])) {
             $username = $_POST['username'];
-            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $email = $_POST['email'];
 
-            $sql = "UPDATE users SET username=?, pass=?, email=? WHERE email = ?";
+            $sql = "UPDATE users SET username=? WHERE email = ?";
             $stmt = mysqli_prepare($conn, $sql);
 
-            mysqli_stmt_bind_param($stmt, "ssss", $username, $password, $email , $_POST['email']);
-            // $_SESSION['user'] = $row;
+            mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+            mysqli_stmt_execute($stmt); // Execute the update statement
+
+            // Optionally, you can update the session if needed
+            $_SESSION['username'] = $username;
+            $_SESSION['email'] = $email;
+
             header("Location: index.php");
+            exit(); // Make sure to exit after redirecting
         } else {
             echo "Wrong password";
         }
     }
-     } else {
+} else {
     echo "0 results";
 }
-// if ($_POST['password']  )
+?>
