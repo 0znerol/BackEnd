@@ -1,17 +1,14 @@
 <?php
 include 'interface.php';
 include 'classes.php';
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
-
-// Creazione degli oggetti solo se non sono già presenti nella sessione
 $libro1 = new Libro('Il nome della rosa', 'Umberto Eco', 1980);
 $libro2 = new Libro('Il signore degli anelli', 'J.R.R. Tolkien', 1954);
 $libro3 = new Libro('Il piccolo principe', 'Antoine de Saint-Exupéry', 1943);
-// Creazione degli oggetti DVD
-$dvd1 = new DVD('Inception', 'Christopher Nolan', 2010);
-$dvd2 = new DVD('Interstellar', 'Christopher Nolan', 2014);
-$dvd3 = new DVD('Dunkirk', 'Christopher Nolan', 2017);
-// Gestione delle azioni
+
 if (isset($_POST['prestaLibro'])) {
 
     $libro1->prestaLibro();
@@ -70,7 +67,15 @@ if (isset($_POST['restituisciLibro'])) {
                     <button type="submit" name="restituisciLibro1">Restituisci</button>
                 </form>
                 <?php
-                    if (isset($_POST['prestaLibro1'])) {
+                    print_r($libro1->prestato);
+                    if ($libro1->prestato == true) {
+                        echo "Prestato";
+                        if (isset($_POST['restituisciLibro1'])) {
+                        $libro1->restituisciLibro();
+                        }
+                        // echo "Restituito";
+                    }
+                    if ($libro1->prestato == false && isset($_POST['prestaLibro1'])) {
                         $libro1->prestaLibro();
                         // echo "Prestato";
                     }

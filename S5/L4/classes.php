@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 abstract class MaterialeBibliotecario implements Prestito {
     protected static $contatoreLibri = 0;
     protected static $contatoreDVD = 0;
@@ -7,33 +11,36 @@ abstract class MaterialeBibliotecario implements Prestito {
     private $titolo;
     private $autore;
     private $annoPubblicazione;
+    public $prestato;
+
+    // public function prestaLibro() {
+    //     self::$contatoreLibri--;
+
+    // }
+    // public function prestaDVD() {
+    //     self::$contatoreDVD--;
+    // }
 
     public function prestaLibro() {
         self::$contatoreLibri--;
-        echo "Prestato";
-
+        $this->prestato = true;
     }
-
     public function restituisciLibro() {
         self::$contatoreLibri++;
+        $this->prestato = false;
     }
-    public function prestaDVD() {
-        self::$contatoreDVD--;
-    }
-
-    public function restituisciDVD() {
-        self::$contatoreDVD++;
-    }
-
 
 }
 
-// Definizione della sottoclasse Libro
 class Libro extends MaterialeBibliotecario {
+
+
     public function __construct($titolo, $autore, $annoPubblicazione) {
         $this->titolo = $titolo;
         $this->autore = $autore;
         $this->annoPubblicazione = $annoPubblicazione;
+        $this->prestato = false;
+
         self::$contatoreLibri++;
     }
 
@@ -49,9 +56,9 @@ class Libro extends MaterialeBibliotecario {
     public function getAnnoPubblicazione() {
         return $this->annoPubblicazione;
     }
+
 }
 
-// Definizione della sottoclasse DVD
 class DVD extends MaterialeBibliotecario {
     public function __construct($titolo, $autore, $annoPubblicazione) {
         $this->titolo = $titolo;
