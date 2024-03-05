@@ -40,7 +40,6 @@ class Libro extends MaterialeBibliotecario {
         $this->autore = $autore;
         $this->annoPubblicazione = $annoPubblicazione;
         $this->prestato = false;
-
         self::$contatoreLibri++;
     }
 

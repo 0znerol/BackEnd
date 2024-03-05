@@ -1,130 +1,117 @@
+
+
+
 <?php
-include 'interface.php';
-include 'classes.php';
+// include 'interface.php';
+// include 'classes.php';
+// include_once 'config.php';
+// include 'dbPDO.php';
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-$libro1 = new Libro('Il nome della rosa', 'Umberto Eco', 1980);
-$libro2 = new Libro('Il signore degli anelli', 'J.R.R. Tolkien', 1954);
-$libro3 = new Libro('Il piccolo principe', 'Antoine de Saint-Exupéry', 1943);
+// $libro1 = new Libro('Il nome della rosa', 'Umberto Eco', 1980);
+// $libro2 = new Libro('Il signore degli anelli', 'J.R.R. Tolkien', 1954);
+// $libro3 = new Libro('Il piccolo principe', 'Antoine de Saint-Exupéry', 1943);
 
-if (isset($_POST['prestaLibro'])) {
+// if (isset($_POST['prestaLibro'])) {
 
-    $libro1->prestaLibro();
-    // print_r($_SESSION['libro1']);
-    // unset($_POST['prestaLibro']);
-    // Esegui l'azione di prestito per il libro
-    // Potresti aggiungere qui la logica per gestire il prestito del libro
-}
+//     $libro1->prestaLibro();
+//     // print_r($_SESSION['libro1']);
+//     // unset($_POST['prestaLibro']);
+//     // Esegui l'azione di prestito per il libro
+//     // Potresti aggiungere qui la logica per gestire il prestito del libro
+// }
 
-if (isset($_POST['restituisciLibro'])) {
-    // $_SESSION['libro1']->restituisciLibro();
-    // unset($_POST['restituisciLibro']);
-    // Esegui l'azione di restituzione per il libro
-    // Potresti aggiungere qui la logica per gestire la restituzione del libro
-}
+// if (isset($_POST['restituisciLibro'])) {JJ.R.R. Tolkien.R.R. Tolkien
+//     // $_SESSION['libro1']->restituisciLibro();
+//     // unset($_POST['restituisciLibro']);
+//     // Esegui l'azione di restituzione per il libro
+//     // Potresti aggiungere qui la logica per gestire la restituzione del libro
+// }
+    // PDO -> Php Data Object
+    require_once('booksDTO.php');
+    require_once('database.php');
+
+    $config = require_once('config.php');
+
+    use db\DB_PDO as DB;
+
+    //$db = new DB($config);
+    //print_r($db->conn);
+
+    //var_dump(DB::getInstance($config));
+
+    // Il metodo getInstance della classe Singleton ritorna una istanza
+    // se è già presente altrimenti la crea e la ritorna
+    $PDOConn = DB::getInstance($config); 
+    $conn = $PDOConn->getConnection();
+
+
+    // $id = 0;
+    // $name = 'Francesca';
+    // $lastname = 'Neri';
+    // $city = 'Napoli';
+
+    $booksDTO = new BooksDTO($conn);
+    $res = $booksDTO->getAll();
+
+    //$res = $userDTO->getUserByID(2);
+
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-    </style>
+    <title>Libreria</title>
 </head>
 <body>
-    <h2>Biblioteca</h2>
+    <h1>Libreria</h1>
+    <form action="" method="post">
+        <input type="submit" name="prestaLibro" value="Presta libro">
+        <input type="submit" name="restituisciLibro" value="Restituisci libro">
+    </form>
 
-    <h3>Libri</h3>
-    <table>
-        <tr>
-            <th>Titolo</th>
-            <th>Autore</th>
-            <th>Anno di pubblicazione</th>
-            <th>Azioni</th>
-        </tr>
-        <tr>
-            <td><?php echo $libro1->getTitolo(); ?></td>
-            <td><?php echo $libro1->getAutore(); ?></td>
-            <td><?php echo $libro1->getAnnoPubblicazione(); ?></td>
-            <td>
-                <form method="post">
-                    <button type="submit" name="prestaLibro1">Presta</button>
-                    <button type="submit" name="restituisciLibro1">Restituisci</button>
-                </form>
-                <?php
-                    print_r($libro1->prestato);
-                    if ($libro1->prestato == true) {
-                        echo "Prestato";
-                        if (isset($_POST['restituisciLibro1'])) {
-                        $libro1->restituisciLibro();
-                        }
-                        // echo "Restituito";
-                    }
-                    if ($libro1->prestato == false && isset($_POST['prestaLibro1'])) {
-                        $libro1->prestaLibro();
-                        // echo "Prestato";
-                    }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td><?php echo $libro2->getTitolo(); ?></td>
-            <td><?php echo $libro2->getAutore(); ?></td>
-            <td><?php echo $libro2->getAnnoPubblicazione(); ?></td>
-            <td>
-                <form method="post">
-                    <button type="submit" name="prestaLibro2">Presta</button>
-                    <button type="submit" name="restituisciLibro2">Restituisci</button>
-                </form>
-                <?php
-                    if (isset($_POST['prestaLibro2'])) {
-                        $libro2->prestaLibro();
-                        // echo "Prestato";
-                    }
-                ?>
-            </td>
-        </tr>
-        <tr>
-            <td><?php echo $libro3->getTitolo(); ?></td>
-            <td><?php echo $libro3->getAutore(); ?></td>
-            <td><?php echo $libro3->getAnnoPubblicazione(); ?></td>
-            <td>
-                <form method="post">
-                    <button type="submit" name="prestaLibro3">Presta</button>
-                    <button type="submit" name="restituisciLibro3">Restituisci</button>
-                </form>
-                <?php
-                    if (isset($_POST['prestaLibro3'])) {
-                        $libro3->prestaLibro();
+    <div>
+        <h2>Libri disponibili</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Titolo</th>
+                    <th>Autore</th>
+                    <th>Data di pubblicazione</th>
+                    <th>Azioni</th>
+                    <th>Stato</th>
 
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                if($res) { // Controllo se ci sono dei dati nella variabile $res
+                    foreach($res as $row) {
+                        // print_r($row['id']."\n");
+                        $id = $row['id'];
+                        echo '<tr>';
+                        echo '<td>'.$row['id'].'</td>';
+                        echo '<td>'.$row['titolo'].'</td>';
+                        echo '<td>'.$row['autore'].'</td>';
+                        echo '<td>'.$row['data_pub'].'</td>';
+                        echo '<td class="actions">';
+                        echo '<form action="prestaLibro.php" method="post" name="form'.$id.'">';
+                        echo '<input type="hidden" name="id" value="'.$id.'">';
+                        echo    '<input type="submit" value="Presta/Rendi">';
+                        echo     '</form>';
+                        // echo '<button>Restituisci</button>';
+                        echo '</td>';
+                        echo '<td>'.$row['prestato'].'</td>';
+                        echo '</tr>';
                     }
-                ?>
-            </td>
-        </tr>
-    </table>
-
-    <!-- <h3>Azioni</h3>
-    <form method="post">
-        <button type="submit" name="prestaLibro">Presta Libro</button>
-        <button type="submit" name="restituisciLibro">Restituisci Libro</button>
-    </form> -->
-    <p>Numero totale di libri: <?php echo Libro::contaLibri(); ?></p>                
-    <p>Numero totale di DVD: <?php echo DVD::contaDVD(); ?></p>
-    <!-- Ripeti lo stesso schema per i DVD se necessario -->
+                }
+            ?>
+            </tbody>
+        </table>
 </body>
 </html>
+
