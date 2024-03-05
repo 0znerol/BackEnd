@@ -92,6 +92,11 @@ error_reporting(E_ALL);
                 if($res) { // Controllo se ci sono dei dati nella variabile $res
                     foreach($res as $row) {
                         // print_r($row['id']."\n");
+                        if($row['prestato'] == 0) {
+                            $stato = 'Disponibile';
+                        } else {
+                            $stato = 'Prestato';
+                        }
                         $id = $row['id'];
                         echo '<tr>';
                         echo '<td>'.$row['id'].'</td>';
@@ -101,11 +106,11 @@ error_reporting(E_ALL);
                         echo '<td class="actions">';
                         echo '<form action="prestaLibro.php" method="post" name="form'.$id.'">';
                         echo '<input type="hidden" name="id" value="'.$id.'">';
-                        echo    '<input type="submit" value="Presta/Rendi">';
-                        echo     '</form>';
+                        echo '<input type="submit" value="Presta/Rendi">';
+                        echo '</form>';
                         // echo '<button>Restituisci</button>';
                         echo '</td>';
-                        echo '<td>'.$row['prestato'].'</td>';
+                        echo '<td>'.$stato.'</td>';
                         echo '</tr>';
                     }
                 }
