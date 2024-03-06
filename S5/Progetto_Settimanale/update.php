@@ -34,7 +34,7 @@ if(isset($_POST['id'])) {
             echo "Errore nella modifica";
         }
     } else {
-        echo "Utente non trovato";
+        header("Location: index.php?mod=true&id=".$_POST['id']."&error=Password errata");
     }
 } else {
     echo "Errore";

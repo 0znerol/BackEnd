@@ -25,11 +25,12 @@ if (isset($_SESSION['loggedUser'])) {
 ?>
 
     <!-- HTML part -->
+    <body class="bg-dark">
     <div class='d-flex justify-content-between'>
-        <h1>Benvenuto <?php echo $loggedUser['username'] ?></h1>
-        <a href="logout.php" class="m-2"><button class="btn border">Logout</button></a>
+        <h1 class="text-white">Benvenuto <?php echo $loggedUser['username'] ?></h1>
+        <a href="logout.php" class="m-2"><button class="btn border border-danger text-danger bg-light">Logout</button></a>
     </div>
-    <h2>User List</h2>
+    <h2 class="text-white">User List</h2>
     <table class="table">
         <thead>
             <tr>
@@ -49,8 +50,8 @@ if (isset($_SESSION['loggedUser'])) {
                     <td><?php echo $user['email']; ?></td>
                     <td><?php echo str_repeat('*', strlen($user['pass'])/6); ?></td>
                     <?php if($loggedUser['username'] == 'admin' || $user['id'] == $_SESSION['loggedUser']) { ?>
-                        <td><a href="index.php?mod=true&id=<?php echo $user['id']; ?>"><button class="btn border">Modifica</button></a></td>
-                        <td><a href="delete.php?id=<?php echo $user['id']; ?>"><button class="btn border">Elimina</button></a></td>
+                        <td><a href="index.php?mod=true&id=<?php echo $user['id']; ?>"><button class="btn border border-success text-success">Modifica</button></a></td>
+                        <td><a href="delete.php?id=<?php echo $user['id']; ?>"><button class="btn border border-danger text-danger">Elimina</button></a></td>
                     <?php } else { ?>
                         <td></td>
                         <td></td>
@@ -65,7 +66,10 @@ if (isset($_SESSION['loggedUser'])) {
     ?>
         <!-- Display form for modification -->
         <div class="card m-5">
-        <h2 class="m-auto">Modifica Utente "<?php echo $user['username']; ?>" </h2>
+            <div class="d-inline-flex">
+                <h2 class="m-auto">Modifica Utente "<?php echo $user['username']; ?>" </h2>
+                <a href="index.php" class="text-danger"><i class="bi bi-x-lg border rounded border-danger"></i></a>
+            </div>
         <form action="update.php" method="post" class="m-2">
             <input class="form-control" type="hidden" name="id" value="<?php echo $user['id']; ?>">
             <label class="form-label" for="username">Username</label>
@@ -74,9 +78,13 @@ if (isset($_SESSION['loggedUser'])) {
             <input class="form-control" type="email" name="email" value="<?php echo $user['email']; ?>" required><br>
             <label class="form-label" for="password">Password</label>
             <input class="form-control" type="password" name="pass" value="" placeholder="Verifica Password" required><br>
-            <button type="submit">Modifica</button>
+            <button type="submit" class="btn border border-success text-success">Accetta</button>
         </form>
+        <?php if(isset($_GET['error'])) { ?>
+            <p class="m-auto bg-danger text-white rounded p-2"> <?php echo $_GET['error']; ?> </p>
+        <?php } ?>
         </div>
+    </body>
     <?php } ?>
 
 <?php 
