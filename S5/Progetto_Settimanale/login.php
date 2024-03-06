@@ -15,5 +15,12 @@
         <input type="password" name="pass" placeholder="Password" required><br>
         <button type="submit">Login</button>
     </form>
+    <h2>Register</h2>
+    <form action="register.php" method="post">
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="pass" placeholder="Password" required><br>
+        <button type="submit">Register</button>
+    </form>
 </body>
 </html>

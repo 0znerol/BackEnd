@@ -33,10 +33,10 @@ error_reporting(E_ALL);
 
             return null;
         }
-        public function addUser(array $libro) {
+        public function addUser(array $user) {
             $sql = "INSERT INTO S5PS.utenti (username, email, pass) VALUES (:username, :email, :pass)";
             $stm = $this->conn->prepare($sql);
-            $stm->execute(['username' => $libro['username'], 'email' => $libro['email'], 'pass' => $libro['pass']]);
+            $stm->execute(['username' => $user['username'], 'email' => $user['email'], 'pass' => $user['pass']]);
             return $stm->rowCount();
         }
 
@@ -53,9 +53,16 @@ error_reporting(E_ALL);
             return null;
         }
         public function updateUser(array $user) {
-            $sql = "UPDATE S5PS.utenti SET username = :username, email = :email, pass = :pass WHERE id = :id";
+            $sql = "UPDATE S5PS.utenti SET username = :username, email = :email WHERE id = :id";
             $stm = $this->conn->prepare($sql);
-            $stm->execute(['id' => $user['id'], 'username' => $user['username'], 'email' => $user['email'], 'pass' => $user['pass']]);
+            $stm->execute(['id' => $user['id'], 'username' => $user['username'], 'email' => $user['email']]);
             return $stm->rowCount();
         }
+        public function deleteUser(int $id) {
+            $sql = "DELETE FROM S5PS.utenti WHERE id = :id";
+            $stm = $this->conn->prepare($sql);
+            $stm->execute(['id' => $id]);
+            return $stm->rowCount();
+        }
+
     }

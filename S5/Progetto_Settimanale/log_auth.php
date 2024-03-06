@@ -19,10 +19,10 @@ $usersDTO = new UsersDTO($conn);
 print_r($_POST);
 if(isset($_POST['username'])) {
     $users = $usersDTO->getUserForLogin($_POST['username']);
-    print_r($users);
+    // print_r($users);
 
-    if($users['password'] == $_POST['pass']) {
-        $_SESSION['loggedUser'] = $users['username'];
+    if(password_verify($_POST['pass'], $users['pass'])) {
+        $_SESSION['loggedUser'] = $users['id'];
         header("Location: index.php");
         exit();
     } else {

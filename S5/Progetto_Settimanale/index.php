@@ -7,6 +7,7 @@ error_reporting(E_ALL);
 require_once('users.php');
 require_once('database.php');
 include('usersDTO.php');
+include('head.php');
 
 $config = require_once('config.php');
 
@@ -42,31 +43,42 @@ $conn = $PDOConn->getConnection();
 // }
 
 // Pagina di login
-if (!isset($_SESSION['loggedUser']) || $_SESSION['loggedUser'] !== true) {
+if (isset($_SESSION['loggedUser'])) {
     // $users = $usersDTO->getUserForLogin($_POST['username']);
     // print_r($users);
     $usersDTO = new UsersDTO($conn);
     $res = $usersDTO->getAll();
-    // print_r($res);
+    $loggedUser = $usersDTO->getUsersByID($_SESSION['loggedUser']);
 ?>
+    <div class='d-flex justify-content-between'>
+        <h1>Benvenuto <?php echo $loggedUser['username'] ?></h1>
+        <a href="logout.php" class="m-2"><button>Logout</button></a>
+    </div>
     <h2>User List</h2>
-    <table>
+    <table class="table">
+        <thead>
         <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Password</th>
-            <th>Modifica</th>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Modifica</th>
+            <th scope="col">Elimina</th>
         </tr>
-        <?php foreach ($res as $user) {?>
+        </thead>
+        <tbody>
+        <?php foreach ($res as $user) { ?>
             <tr>
                 <td><?php echo $user['id']; ?></td>
                 <td><?php echo $user['username']; ?></td>
                 <td><?php echo $user['email']; ?></td>
-                <td><?php echo $user['pass']; ?></td>
-                <td><a href="index.php?mod=true&id=<?php echo $user['id']; ?>">Modifica</a></td>
+                <td><?php echo str_repeat('*', strlen($user['pass'])/6); ?></td>
+                <td><a href="index.php?mod=true&id=<?php echo $user['id']; ?>"><button>Modifica</button></a></td>
+                <td><a href="delete.php?id=<?php echo $user['id']; ?>"><button>Elimina</button></a></td>
             </tr>
+           
         <?php } ?>
+        </tbody>
     </table>
     
 
@@ -77,9 +89,14 @@ if(isset($_GET['mod']) && $_GET['mod'] == true) {
     ?>
     <form action="update.php" method="post">
         <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+        <label for="username" >Username</label>
         <input type="text" name="username" value="<?php echo $user['username']; ?>" required><br>
+        <label for="email" >Email</label>
+
         <input type="email" name="email" value="<?php echo $user['email']; ?>" required><br>
-        <input type="password" name="pass" value="<?php echo $user['pass']; ?>" required><br>
+        <label for="password" >Password</label>
+
+        <input type="password" name="pass" value="" placeholder="Verifica Password" required><br>
         <button type="submit">Modifica</button>
     </form>
 <?php } ?>
