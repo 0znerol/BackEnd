@@ -19,13 +19,13 @@ session_start();
     <?php if (isset($error)) { ?>
         <p><?php echo $error; ?></p>
     <?php } ?>
-    <form action="log_auth.php" method="post">
+    <form action="../log_auth.php" method="post">
         <input type="text" name="username" placeholder="Username" required><br>
         <input type="password" name="pass" placeholder="Password" required><br>
         <button type="submit" class="btn border text-light">Login</button>
     </form>
     <h2 class="text-light">Register</h2>
-    <form action="register.php" method="post">
+    <form action="../register.php" method="post">
         <input type="text" name="username" placeholder="Username" required><br>
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="pass" placeholder="Password" required><br>

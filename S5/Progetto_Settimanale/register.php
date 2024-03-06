@@ -27,10 +27,10 @@
 
             $res = $usersDTO->addUser($user);
             if($res) {
-                header("Location: login.php");
+                header("Location: HTML/login.php");
 
             } else {
-                header("Location: login.php?error=Errore nella registrazione");
+                header("Location: HTML/login.php?error=Errore nella registrazione");
             }
     } else {
         echo "Errore";

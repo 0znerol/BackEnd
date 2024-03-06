@@ -40,15 +40,15 @@ error_reporting(E_ALL);
                 if($stm->execute(['username' => $user->getUsername(), 'email' => $user->getEmail(), 'pass' => $user->getPassword()])){
                     return $stm->rowCount();
                 } else {
-                    header("Location: login.php?error=Errore nella registrazione");
+                    header("Location: HTML/login.php?error=Errore nella registrazione");
                     exit();
                 }
             } catch (PDOException $e) {
                 if ($e->getCode() == '23000') {
-                    header("Location: login.php?error=Utente gia registrato");
+                    header("Location: HTML/login.php?error=Utente gia registrato");
                     exit();
                 } else {
-                    header("Location: login.php?error=other_PDO_error");
+                    header("Location: HTML/login.php?error=other_PDO_error");
                     exit();
                 }
             }

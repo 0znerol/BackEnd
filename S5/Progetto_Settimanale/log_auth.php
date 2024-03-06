@@ -30,9 +30,9 @@ if(isset($_POST['username'])) {
         exit();
     } else {
 
-        header("Location: login.php?error=Password errata");
+        header("Location: HTML/login.php?error=Password errata");
     }
-    header("Location: login.php?error=Utente o password errati");
+    header("Location: HTML/login.php?error=Utente o password errati");
 
 }
 

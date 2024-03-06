@@ -1,8 +1,10 @@
 <?php
-
-require_once('database.php');
-include('usersDTO.php');
-include('userClass.php');
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+require_once('Classes/database.php');
+include('Classes/usersDTO.php');
+include('Classes/userClass.php');
 
 $config = require_once('config.php');
 
@@ -28,6 +30,7 @@ if(isset($_POST['id'])) {
         // $user['pass'] =  $_POST['pass'];
         $res = $usersDTO->updateUser($user);
         if($res) {
+            print_r("ciao");
             header("Location: index.php");
 
         } else {
