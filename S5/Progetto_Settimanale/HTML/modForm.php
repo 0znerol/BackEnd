@@ -16,7 +16,10 @@ $user = $usersDTO->getUsersByID($_GET['id']);
     <label class="form-label" for="password">Password</label>
     <input class="form-control" type="password" name="pass" value="" placeholder="Verifica Password" required><br>
     <button type="submit" class="btn border border-success text-success">Accetta</button>
+    
+
 </form>
+<a href="/BackEnd/BackEnd/S5/Progetto_Settimanale/HTML/changePassword.php?id=<?php echo $user['id'] ?>" class="m-2"><button class="btn border border-warning text-warning">Password Dimenticata</button></a>
 <?php if(isset($_GET['error'])) { ?>
     <p class="m-auto bg-danger text-white rounded p-2"> <?php echo $_GET['error']; ?> </p>
 <?php } ?>

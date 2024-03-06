@@ -79,4 +79,12 @@ error_reporting(E_ALL);
             return $stm->rowCount();
         }
 
+        public function updatePass($id, $pass) {
+            $sql = "UPDATE S5PS . utenti SET pass = :pass WHERE id = :id";
+            $stm = $this->conn->prepare($sql);
+            
+            $stm->execute(['id' => $id, 'pass' => $pass]);
+            return $stm->rowCount();
+        }
+
     }
