@@ -5,9 +5,9 @@ ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 // Includi le classi necessarie
 
-require_once('database.php');
-include('usersDTO.php');
-include('userClass.php');
+require_once('Classes/database.php');
+include('Classes/usersDTO.php');
+include('Classes/userClass.php');
 
 
 $config = require_once('config.php');
@@ -24,7 +24,7 @@ if(isset($_POST['username'])) {
     // print_r($users);
 
 
-    if($users && password_verify($_POST['pass'], $users['pass'])) {
+    if(password_verify($_POST['pass'], $users['pass'])) {
         $_SESSION['loggedUser'] = $users['id'];
         header("Location: index.php");
         exit();
@@ -32,7 +32,7 @@ if(isset($_POST['username'])) {
 
         header("Location: login.php?error=Password errata");
     }
-    header("Location: login.php?error=Utente non trovato");
+    header("Location: login.php?error=Utente o password errati");
 
 }
 

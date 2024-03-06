@@ -1,9 +1,9 @@
 <?php
 
 
-    require_once('database.php');
-    include('usersDTO.php');
-    include('userClass.php');
+    require_once('Classes/database.php');
+    include('Classes/usersDTO.php');
+    include('Classes/userClass.php');
 
     $config = require_once('config.php');
 
@@ -23,12 +23,14 @@
                 $_POST['email'],
                 password_hash($_POST['pass'], PASSWORD_DEFAULT)
             );
+            print_r("ciao");
+
             $res = $usersDTO->addUser($user);
             if($res) {
-                header("Location: index.php");
+                header("Location: login.php");
 
             } else {
-                echo "Errore nella modifica";
+                header("Location: login.php?error=Errore nella registrazione");
             }
     } else {
         echo "Errore";

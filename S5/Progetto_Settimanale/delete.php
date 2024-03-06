@@ -3,9 +3,9 @@
     ini_set('display_errors', '1');
     ini_set('display_startup_errors', '1');
     error_reporting(E_ALL);
-    require_once('database.php');
-    include('usersDTO.php');
-    include('userClass.php');
+    require_once('Classes/database.php');
+    include('Classes/usersDTO.php');
+    include('Classes/userClass.php');
 
     $config = require_once('config.php');
 
