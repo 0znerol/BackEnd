@@ -1,3 +1,6 @@
+<?php
+include('head.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
-<body>
+<body class="d-flex flex-column align-items-center">
     <h2>Login</h2>
     <?php if (isset($error)) { ?>
         <p><?php echo $error; ?></p>
@@ -22,5 +25,11 @@
         <input type="password" name="pass" placeholder="Password" required><br>
         <button type="submit">Register</button>
     </form>
+    <?php if (isset($_GET['error'])) { 
+            if($_GET['error'] == 1) {
+                echo '<p class="bg-danger text-white rounded p-2">Username o password errati</p>';
+            } 
+        } ?>
+
 </body>
 </html>
