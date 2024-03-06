@@ -29,6 +29,7 @@ if (isset($_SESSION['loggedUser'])) {
         <a href="index.php" class="text-danger pt-2 pe-2"><i class="bi bi-x-lg border rounded border-danger"></i></a>
     </div>
 <form action="../update_pass.php" method="post" class="m-2">
+    <input class="form-control" type="hidden" name="id" value="<?php echo $user['id']; ?>">
     <label class="form-label text-light" for="pass">Nuova Password</label>
     <input class="form-control" type="password" name="pass" value="" placeholder="Nuova Password" required><br>
     <label class="form-label text-light" for="pass2">Verifica password</label>

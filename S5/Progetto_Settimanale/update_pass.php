@@ -15,7 +15,7 @@
     $usersDTO = new UsersDTO($conn);
     if(isset($_POST['pass'])) {
         if($_POST['pass'] == $_POST['pass2']) {
-            $res = $usersDTO->updatePass($_SESSION['loggedUser'], password_hash($_POST['pass'], PASSWORD_DEFAULT));
+            $res = $usersDTO->updatePass($_POST['id'], password_hash($_POST['pass'], PASSWORD_DEFAULT));
             if($res) {
                 header("Location: index.php");
             } else {
