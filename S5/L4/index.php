@@ -68,11 +68,6 @@ error_reporting(E_ALL);
 </head>
 <body>
     <h1>Libreria</h1>
-    <form action="" method="post">
-        <input type="submit" name="prestaLibro" value="Presta libro">
-        <input type="submit" name="restituisciLibro" value="Restituisci libro">
-    </form>
-
     <div>
         <h2>Libri disponibili</h2>
         <table>
@@ -89,7 +84,7 @@ error_reporting(E_ALL);
             </thead>
             <tbody>
             <?php
-                if($res) { // Controllo se ci sono dei dati nella variabile $res
+                if($res) { 
                     foreach($res as $row) {
                         // print_r($row['id']."\n");
                         if($row['prestato'] == 0) {

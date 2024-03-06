@@ -13,7 +13,7 @@ error_reporting(E_ALL);
             $sql = 'SELECT * FROM S5L5.libri';
             $res = $this->conn->query($sql, PDO::FETCH_ASSOC);
     
-            if($res) { // Controllo se ci sono dei dati nella variabile $res
+            if($res) { 
                 
                 return $res;
             }
@@ -26,7 +26,7 @@ error_reporting(E_ALL);
             $stm = $this->conn->prepare($sql);
             $res = $stm->execute(['id' => $id]);
     
-            if($res) { // Controllo se ci sono dei dati nella variabile $res
+            if($res) { 
                 $libro = $stm->fetch(PDO::FETCH_ASSOC);
                 return $libro;
             }
