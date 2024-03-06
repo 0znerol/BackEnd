@@ -1,5 +1,11 @@
 <?php
 include('head.php');
+session_start();
+// if($_SERVER['REQUEST_URI'] == '/BackEnd/BackEnd/S5/Progetto_Settimanale/login.php/log_auth.php ') {
+//     header("Location: login.php/error=1");
+//     // exit();
+// }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,9 +32,8 @@ include('head.php');
         <button type="submit">Register</button>
     </form>
     <?php if (isset($_GET['error'])) { 
-            if($_GET['error'] == 1) {
-                echo '<p class="bg-danger text-white rounded p-2">Username o password errati</p>';
-            } 
+                // print_r($_SESSION['error']);
+                echo '<p class="bg-danger text-white rounded p-2">'.$_GET['error'].'</p>';
         } ?>
 
 </body>

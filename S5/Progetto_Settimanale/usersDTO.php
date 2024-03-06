@@ -34,10 +34,24 @@ error_reporting(E_ALL);
             return null;
         }
         public function addUser($user) {
-            $sql = "INSERT INTO S5PS.utenti (username, email, pass) VALUES (:username, :email, :pass)";
-            $stm = $this->conn->prepare($sql);
-            $stm->execute(['username' => $user->getUsername(), 'email' => $user->getEmail(), 'pass' => $user->getPassword()]);
-            return $stm->rowCount();
+            try {
+                $sql = "INSERT INTO S5PS.utenti (username, email, pass) VALUES (:username, :email, :pass)";
+                $stm = $this->conn->prepare($sql);
+                if($stm->execute(['username' => $user->getUsername(), 'email' => $user->getEmail(), 'pass' => $user->getPassword()])){
+                    return $stm->rowCount();
+                } else {
+                    header("Location: login.php?error=Errore nella registrazione");
+                    exit();
+                }
+            } catch (PDOException $e) {
+                if ($e->getCode() == '23000') {
+                    header("Location: login.php?error=Utente gia registrato");
+                    exit();
+                } else {
+                    header("Location: login.php?error=other_PDO_error");
+                    exit();
+                }
+            }
         }
 
         public function getUserForLogin($username) {
@@ -45,9 +59,9 @@ error_reporting(E_ALL);
             $stm = $this->conn->prepare($sql);
             $res = $stm->execute(['username' => $username]);
             if($res) { 
-                print_r($res. " ");
+                // print_r($res. " ");
                 $user = $stm->fetch(PDO::FETCH_ASSOC);
-                print_r($user);
+                // print_r($user);
                 return $user;
             }
             return null;
