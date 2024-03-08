@@ -106,8 +106,7 @@ class ProdottoController extends Controller
             'prezzo' => 'required|numeric',
         ]);
 
-        // $prodotto->update($data);
-
+        //TODO
         return redirect()->route('prodotti.index')->with('success', 'Prodotto aggiornato con successo.');
     }
 
@@ -116,8 +115,7 @@ class ProdottoController extends Controller
      */
     public function destroy(Prodotto $prodotto)
     {
-        $prodotto->delete();
-
+        //TODO
         return redirect()->route('prodotti.index')->with('success', 'Prodotto eliminato con successo.');
     }
 }
