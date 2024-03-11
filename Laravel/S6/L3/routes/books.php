@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Book;
+use App\Http\Controllers\BookController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +16,13 @@ use App\Models\Book;
 
 Route::get('/', function () {
     return view('booksList', ['books' => Book::get()]);
-});
+})->name('home');
+
+Route::get('/addBook', function () {
+    return view('addBook');
+})->name('books.add');
+
+Route::post('/bookStore', [BookController::class, 'store'])->name('books.store');
 
 // Route::get('/books', function () {
 //     return Book::get();

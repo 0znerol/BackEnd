@@ -11,8 +11,12 @@ class BooksSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run(array $formData = null): void
     {
-        Book::factory(10)->create();
+        if ($formData) {
+            Book::factory()->fromForm($formData)->create();
+        } else {
+            Book::factory(10)->create();
+        }
     }
 }

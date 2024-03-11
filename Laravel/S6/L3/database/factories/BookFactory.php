@@ -17,10 +17,15 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->unique()->text(50),
-            'author' => fake()->text(20),
-            'category' => fake()->text(5),
-            'created_at' => fake()->datetime()
+            'title' => $this->faker->unique()->text(50),
+            'author' => $this->faker->text(20),
+            'category' => $this->faker->text(5),
+            'created_at' => $this->faker->datetime(),
         ];
+    }
+
+    public function fromForm(array $data): static
+    {
+        return $this->state($data);
     }
 }

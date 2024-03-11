@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title')->unique();
             $table->string('author');
             $table->string('category')->nullable();
+            $table->timestamp('relesed')->nullable();
             $table->timestamps();
         });
     }

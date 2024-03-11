@@ -8,7 +8,7 @@
 
 @section('content')
     <h1>Elenco Libri</h1>
-
+    <a href="{{ route('books.add') }}" class="btn" >Aggiungi Libro</a>
 
     <table class="table">
         <thead>
@@ -25,14 +25,14 @@
                 @forelse ($books as $book)
                     <tr>
 
-                    <td>{{ $book['title'] }}</td>
+                    <td><a href=>{{ $book['title'] }}</a></td>
                     <td>{{ $book['author'] }}</td>
-                    <td>{{ substr($book['created_at'], 0, 10) }}</td>
+                    <td>{{ substr($book['relesed'], 0, 10) }}</td>
                     <td>{{  $book['category']}} </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="4">Nessun book trovato.</td>
+                        <td colspan="4">Nessun libro trovato.</td>
                     </tr>
                 @endforelse
             @endif
