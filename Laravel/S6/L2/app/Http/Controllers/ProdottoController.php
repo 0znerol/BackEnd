@@ -9,19 +9,19 @@ class ProdottoController extends Controller
 
     public $products = [
         [
-            'id' => 1,
+            'id' => 0,
             'name' => 'telefono',
             'description' => 'telefono cellulare',
             'price' => 100
         ],
         [
-            'id' => 2,
+            'id' => 1,
             'name' => 'laptop',
             'description' => 'computer portatile',
             'price' => 300
         ],
         [
-            'id' => 3,
+            'id' => 2,
             'name' => 'tablet',
             'description' => 'tablet pc',
             'price' => 200
@@ -83,7 +83,7 @@ class ProdottoController extends Controller
             abort(404);
         }
     
-        $prodotto = $this->products[$index-1];
+        $prodotto = $this->products[$index];
         return view('show', ['prodotto' => $prodotto]);
     }
 
