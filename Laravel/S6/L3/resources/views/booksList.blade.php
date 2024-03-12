@@ -8,7 +8,8 @@
 
 @section('content')
     <h1>Elenco Libri</h1>
-    <a href="{{ route('books.add') }}" class="btn" >Aggiungi Libro</a>
+    <a href="{{ route('books.create') }}" class="btn" >Aggiungi Libro</a>
+    <a href="{{ route('authors.create') }}" class="btn" >Aggiungi Autore</a>
 
     <table class="table">
         <thead>
@@ -26,7 +27,7 @@
                     <tr>
 
                     <td><a href=>{{ $book['title'] }}</a></td>
-                    <td>{{ $book['author'] }}</td>
+                    <td>{{ $book['author_name'] }}</td>
                     <td>{{ substr($book['relesed'], 0, 10) }}</td>
                     <td>{{  $book['category']}} </td>
                     </tr>
