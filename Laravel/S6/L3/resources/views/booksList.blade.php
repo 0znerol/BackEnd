@@ -26,7 +26,7 @@
                 @forelse ($books as $book)
                     <tr>
 
-                    <td><a href=>{{ $book['title'] }}</a></td>
+                    <td><a href="{{ route('books.show', $book['id']) }}">{{ $book['title'] }}</a></td>
                     <td>{{ $book['author_name'] }}</td>
                     <td>{{ substr($book['relesed'], 0, 10) }}</td>
                     <td>{{  $book['category']}} </td>
