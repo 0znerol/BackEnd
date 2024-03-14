@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('userReg');
-});
+    return view('userLog');
+})->name('usrLog');
 Route::get('/loggedUser', function () {
     return view('loggedUser');
 })->name('loggedUser');
 
+Route::get('/usrReg', function () {
+    return view('userReg');
+})->name('usrReg');
 require __DIR__ . '/auth.php';

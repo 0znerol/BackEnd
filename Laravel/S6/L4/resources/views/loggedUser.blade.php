@@ -37,7 +37,7 @@
     <script>
         let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         // document.querySelector('div.login').addEventListener('click', login);
-        // document.querySelector('div.logout').addEventListener('click', logout);
+        document.querySelector('div.logout').addEventListener('click', logout);
         // document.querySelector('div.user').addEventListener('click', getUser);
 
             fetch('http://127.0.0.1:8000/api/user')
@@ -48,6 +48,22 @@
                 
                 })
                 .catch(error => console.log(error));
+
+            function logout() {
+                let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                fetch('http://127.0.0.1:8000/logout', {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json, text-plain, */*",
+                            "X-CSRF-TOKEN": token
+                            },
+                        method: 'POST',
+                    })
+                    .then(response => response.json())
+                    .then(json => {console.log(json); 
+                        window.location.href = "http://127.0.0.1:8000";})
+                    .catch(error => console.log(error));
+            }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
