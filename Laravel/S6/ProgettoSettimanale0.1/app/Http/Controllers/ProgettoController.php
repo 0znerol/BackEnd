@@ -13,16 +13,19 @@ class ProgettoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {}
+    public function index()
+    {
+        // return Progetto::with('attivita')->paginate(10);
+        // return Auth::user()->progetto
+        // return Progetto::with('attivita')->where('user_id', Auth::id())->paginate(10);
+        return view('dashboard', ['progetto' => Progetto::with('attivita')->where('user_id', Auth::id())->paginate(10)]);
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create(Progetto $progetto)
     {
-        if (!Gate::allows('create-progetto')) {
-            abort(403);
-        }
         return view('projCreate');
     }
 
@@ -31,6 +34,12 @@ class ProgettoController extends Controller
      */
     public function store(StoreProgettoRequest $request)
     {
+        return redirect('/progetto');
+
+        $progetto = new Progetto($request->only(['title', 'description', 'thumb']));
+        $progetto->user_id = Auth::id();
+
+        $progetto->save();
         // return 'created';
 
         // // Update the post...
@@ -50,30 +59,30 @@ class ProgettoController extends Controller
         //     'progetto' => $progetto
         // ]);
 
-        $authorBuilder = Author::orderBy('id');
-        $data = $request->only(['title', 'description', 'thumb', 'user_id']);
-        $data['author_name'] = $authorBuilder->where('id', '=', $data['author_id'])->first()->name;
-        print_r($data);
+        // $authorBuilder = Author::orderBy('id');
+        // $data = $request->only(['title', 'description', 'thumb', 'user_id']);
+        // $data['author_name'] = $authorBuilder->where('id', '=', $data['author_id'])->first()->name;
+        // print_r($data);
 
-        // Soluzione 1
-        /* $sql = 'INSERT INTO posts (title, description, post_thumb, user_id, created_at)
-                VALUES (:title, :description, :post_thumb, :user_id, :created_at)';
-        $res = DB::update($sql, $data);
-        //return $res ? 'Post Created' : 'Post not found!!!';
-        return redirect()->action([PostController::class, 'index']); */
+        // // Soluzione 1
+        // /* $sql = 'INSERT INTO posts (title, description, post_thumb, user_id, created_at)
+        //         VALUES (:title, :description, :post_thumb, :user_id, :created_at)';
+        // $res = DB::update($sql, $data);
+        // //return $res ? 'Post Created' : 'Post not found!!!';
+        // return redirect()->action([PostController::class, 'index']); */
 
-        // Soluzione 2
-        // $queryBuilder = DB::table('posts')->insert($data);
-        // Soluzione 3
-        $queryBuilder = Book::create($data);
+        // // Soluzione 2
+        // // $queryBuilder = DB::table('posts')->insert($data);
+        // // Soluzione 3
+        // $queryBuilder = Book::create($data);
 
-        // return $queryBuilder ? 'Post Created' : 'Post not found!!!';
-        return redirect()->route('home');
+        // // return $queryBuilder ? 'Post Created' : 'Post not found!!!';
+        // return redirect()->route('home');
     }
 
     public function storeAjax(StoreProgettoRequest $request)
     {
-        dd($request->all());
+        // dd($request->all());
         // return response()->json([
         //     'message' => 'Progetto created successfully',
         //     'progetto' => $progetto

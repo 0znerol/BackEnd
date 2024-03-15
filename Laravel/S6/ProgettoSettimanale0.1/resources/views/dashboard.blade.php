@@ -15,18 +15,18 @@
         </div>
     </div>
     <div>
-    <a href="{{ route('progetto.create')  }}" class="btn border">Create Progetto</a>
-    <div>{{ Auth::user()->name }}</div>
+    <a href="{{ route('progetto.create')  }}" class="btn border rounded text-white">Create Progetto</a>
+    <!-- <div>{{ Auth::user()->name }}</div> -->
     @if ($progetto->count() > 0)
-        <h1 class="">Progetti</h1>    
-        <table class="table-auto">
+        <h1 class="text-white">Progetti</h1>    
+        <table class="table text-white">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Attivita</th>
-                    <th>Thumbnail</th>
-                    <th>Actions</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Attivita</th>
+                    <th scope="col">Thumbnail</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,10 +35,10 @@
                     <td>{{ $prog->title }}</td>
                     <td>{{ $prog->description }}</td>
                     <td>
-                        <ul>
-                            @foreach ($attivita as $att)
+                        <ul class="list-group">
+                            @foreach ($prog->attivita as $att)
                             @if ($att->progetto_id == $prog->id)
-                            <li>{{ $att->title }}</li>
+                            <li class="py-4 list-group-item list-group-item-action active">{{ $att->title }}</li>
                             @endif
                             @endforeach
                         </ul>

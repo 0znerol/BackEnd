@@ -30,10 +30,10 @@
         <input type="hidden" name="proj_id" value="">
         <div class="mb-4">
         </div>
-    <button type="submit" class="btn border update">Save</button>
+        <button type="submit" class="btn border update">Save</button>
 
     </form>
-    <a href="{{ route('dashboard') }}" class="btn border">Back</a>
+    <a href="{{ route('progetto.index') }}" class="btn border">Back</a>
 
     <script>
         let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');

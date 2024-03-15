@@ -22,10 +22,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard', [
-        'progetto' => Progetto::all(),
-        'attivita' => Attivita::all(),
-    ]);
+    return view('dashboard' /* , [
+         'progetto' => Progetto::all(),
+         'attivita' => Attivita::all(),
+     ] */);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
