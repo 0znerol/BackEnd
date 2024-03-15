@@ -1,6 +1,11 @@
-<x-app-layout>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-
+</head>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -13,7 +18,7 @@
     <a href="{{ route('progetto.create') }}" class="btn border">Create Progetto</a>
     <div>
     @if ($progetto->count() > 0)
-                            <h1 class="text-2xl font-bold">Progetti</h1>    
+                            <h1 class="">Progetti</h1>    
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -55,6 +60,7 @@
                                 </tbody>
                             </table>
                         @else
-                            <p>No progettos found.</p>                        @endif
+                            <p>No progettos found.</p>                   
+                        @endif
     </div>
-</x-app-layout>
+    </html>

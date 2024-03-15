@@ -46,14 +46,15 @@ class ProgettoController extends Controller
 
     public function storeAjax(StoreProgettoRequest $request)
     {
-        return response()->json([
-            'message' => 'Progetto created successfully',
-            'progetto' => $progetto
-        ]);
-        $validated = $request->validated();
-        $progetto = new Progetto($validated);
-        $progetto->user_id = Auth::id();
-        $progetto->save();
+        dd($request->all());
+        // return response()->json([
+        //     'message' => 'Progetto created successfully',
+        //     'progetto' => $progetto
+        // ]);
+        // $validated = $request->validated();
+        // $progetto = new Progetto($validated);
+        // $progetto->user_id = Auth::id();
+        // $progetto->save();
     }
 
     /**
@@ -77,16 +78,17 @@ class ProgettoController extends Controller
      */
     public function update(UpdateProgettoRequest $request, $id)
     {
-        $progetto = Progetto::findOrFail($id);
+        dd($request->all());
+        // $progetto = Progetto::findOrFail($id);
 
-        // Check if the authenticated user can update this progetto
-        $this->authorize('update', $progetto);
+        // // Authorize the update action for the authenticated user
+        // $this->authorize('update', $progetto);
 
-        // Update the progetto
-        $request = $request->only(['title', 'description', 'thumb']);
-        $progetto->update($request);
+        // // Update the progetto
+        // $request = $request->only(['title', 'description', 'thumb']);
+        // $progetto->update($request);
 
-        return 'updated';
+        // return 'updated';
     }
 
     /**

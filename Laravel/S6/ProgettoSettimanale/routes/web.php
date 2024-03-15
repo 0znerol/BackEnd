@@ -41,6 +41,6 @@ Route::middleware('auth')->group(function () {
     // Route::get('/progetto/create', [ProgettoController::class, 'create'])->name('progetto.create');
 });
 
-Route::resource('progetto', ProgettoController::class)->except(['update', 'store']);
+Route::resource('progetto', ProgettoController::class)->except(['store']);
 
 require __DIR__ . '/auth.php';

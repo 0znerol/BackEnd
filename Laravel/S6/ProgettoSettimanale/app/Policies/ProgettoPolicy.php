@@ -37,7 +37,7 @@ class ProgettoPolicy
      */
     public function update(User $user, Progetto $progetto): bool
     {
-        //
+        return $user->id === $progetto->user_id;
     }
 
     /**
