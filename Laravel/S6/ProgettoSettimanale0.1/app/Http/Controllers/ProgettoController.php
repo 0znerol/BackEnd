@@ -42,19 +42,6 @@ class ProgettoController extends Controller
         return redirect()->action([ProgettoController::class, 'index']);
     }
 
-    public function storeAjax(StoreProgettoRequest $request)
-    {
-        dd($request->all());
-        // return response()->json([
-        //     'message' => 'Progetto created successfully',
-        //     'progetto' => $progetto
-        // ]);
-        // $validated = $request->validated();
-        // $progetto = new Progetto($validated);
-        // $progetto->user_id = Auth::id();
-        // $progetto->save();
-    }
-
     /**
      * Display the specified resource.
      */
@@ -77,11 +64,6 @@ class ProgettoController extends Controller
     public function update(UpdateProgettoRequest $request, $id)
     {
         $progetto = Progetto::findOrFail($id);
-
-        // // Authorize the update action for the authenticated user
-        // $this->authorize('update', $progetto);
-
-        // // Update the progetto
         $request = $request->only(['title', 'description', 'thumb']);
         $progetto->update($request);
 
