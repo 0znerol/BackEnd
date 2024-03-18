@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAttivitaRequest;
 use App\Http\Requests\UpdateAttivitaRequest;
 use App\Models\Attivita;
+use Illuminate\Support\Facades\Auth;
 
 class AttivitaController extends Controller
 {
@@ -13,7 +14,7 @@ class AttivitaController extends Controller
      */
     public function index()
     {
-        //
+        return view('attDetail', ['attivita' => Attivita::where('progetto_id', Auth::id())->paginate(10)]);
     }
 
     /**

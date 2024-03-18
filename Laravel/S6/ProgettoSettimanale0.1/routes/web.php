@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttivitaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgettoController;
 use App\Models\Attivita;
@@ -22,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard' /* , [
+    return redirect('/progetto' /* , [
          'progetto' => Progetto::all(),
          'attivita' => Attivita::all(),
      ] */);
@@ -33,5 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::resource('progetto', ProgettoController::class)->middleware('auth');
+Route::resource('progetto', ProgettoController::class)->middleware('auth', 'verified');
+Route::resource('attivita', AttivitaController::class)->middleware('auth', 'verified');
+Route::get('/progetto/{id}/destroy', [ProgettoController::class, 'progdestroy']);
+
 require __DIR__ . '/auth.php';
+// Route::resource('/posts', PostController::class);
+// Route::post('/posts/update', [PostController::class, 'postupdate']);

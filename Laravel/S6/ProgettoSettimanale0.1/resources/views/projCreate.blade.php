@@ -11,10 +11,11 @@
 </head>
 <body> -->
 <x-app-layout>
+    <h1 class="text-2xl font-bold m-auto mb-5 text-white">Create Progetto</h1>
+    <h1 class="text-2xl font-bold m-auto mb-5 text-white">{{ csrf_token() }}</h1>
 
-    <form action="{{ route('progetto.store') }}" method="POST">
+    <form action="/progetto" method="post">
         @csrf
-        @method('POST')
         <div class="mb-4">
             <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Title</label>
             <input type="text" id="title" name="title" value="" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -80,16 +81,15 @@
             //     .catch(error => console.log(error));
             // })
             // .catch(error => console.log(error));
+            console.log(token)
 
-
-            fetch('http://127.0.0.1:8001/progetto', {
-                    method: 'POST',
+            fetch('http://127.0.0.1:8000/progetto', {
+                    method: 'GET',
                     headers: {
                         "Content-Type": "application/json",
-                        "Accept": "application/json, text-plain, */*",
                         'X-CSRF-TOKEN': token,
                     },
-                    body: JSON.stringify(Object.fromEntries(formData)),
+                    body: JSON.stringify(Object.formData),
                     credentials: 'include'
                 })
                 .then(response => response.json())

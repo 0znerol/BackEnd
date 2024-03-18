@@ -6,7 +6,9 @@ use App\Http\Requests\StoreProgettoRequest;
 use App\Http\Requests\UpdateProgettoRequest;
 use App\Models\Progetto;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Carbon;
 
 class ProgettoController extends Controller
 {
@@ -34,12 +36,29 @@ class ProgettoController extends Controller
      */
     public function store(StoreProgettoRequest $request)
     {
-        return redirect('/progetto');
+        $data = $request->only([
+            'title',
+            'description',
+            'thumb'
+        ]);
+        $data['user_id'] = Auth::id();
+        $data['created_at'] = Carbon::now();
 
-        $progetto = new Progetto($request->only(['title', 'description', 'thumb']));
-        $progetto->user_id = Auth::id();
+        // Soluzione 1
+        /* $sql = 'INSERT INTO posts (title, description, post_thumb, user_id, created_at)
+                VALUES (:title, :description, :post_thumb, :user_id, :created_at)';
+        $res = DB::update($sql, $data);
+        //return $res ? 'Post Created' : 'Post not found!!!';
+        return redirect()->action([PostController::class, 'index']); */
 
-        $progetto->save();
+        // Soluzione 2
+        $queryBuilder = DB::table('progettos')->insert($data);
+
+        // Soluzione 3
+        // $queryBuilder = Progetto::create($data);
+
+        // return $queryBuilder ? 'Post Created' : 'Post not found!!!';
+        return redirect()->action([ProgettoController::class, 'index']);
         // return 'created';
 
         // // Update the post...
@@ -82,7 +101,7 @@ class ProgettoController extends Controller
 
     public function storeAjax(StoreProgettoRequest $request)
     {
-        // dd($request->all());
+        dd($request->all());
         // return response()->json([
         //     'message' => 'Progetto created successfully',
         //     'progetto' => $progetto
@@ -132,6 +151,18 @@ class ProgettoController extends Controller
      */
     public function destroy(Progetto $progetto)
     {
-        //
+        $queryBuilder = $progetto->delete();
+        return $queryBuilder ? 'Post Updated' : 'Post not found!!!';
+    }
+
+    public function progdestroy(int $id)
+    {
+        /* $sql = 'DELETE FROM posts WHERE id = :id';
+        $res = DB::delete($sql, ['id' => $id]); */
+
+        $queryBuilder = DB::table('progettos')->delete($id);
+
+        // return $queryBuilder ? 'Post Deleted' : 'Post not found!!!';
+        return redirect()->back();
     }
 }
