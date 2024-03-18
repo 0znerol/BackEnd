@@ -30,11 +30,11 @@
                                 </ul>
                             @else
                                 <p class="text-danger">nessuna attivita trovata</p>
-                                <p class="text-danger">per aggiungere un attivita clicca sul nome</p>
+                                <p class="text-danger">per aggiungere un attivita clicca sul titolo</p>
                             @endif
                             </td>
                             <td>
-                                <img src="{{ $prog->thumb }}" alt="{{ $prog->title }}" class="img-fluid" style="min-width:200px; min-height:200px;">
+                                <img src="{{ $prog->thumb }}" alt="{{ $prog->title }}" class="img-fluid" style="min-width:200px; max-width:200px;">
                             </td>
                             <td class="text-center">
                                     <a type="button" class="btn border-danger rounded text-danger mb-2" href="/progetto/{{$prog->id}}/destroy">Delete</a>
@@ -46,7 +46,7 @@
                 </tbody>
             </table>
             @else
-            <p>No progettos found.</p>                   
+            <p class="text-danger">Nessun progetto trovato</p>                   
             @endif
         </div>
     </div>

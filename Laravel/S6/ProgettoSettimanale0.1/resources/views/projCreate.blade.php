@@ -20,9 +20,9 @@
         <input type="hidden" name="proj_id" value="">
         <div class="mb-4">
         </div>
-        <button type="submit" class="btn border update">Save</button>
+        <button type="submit" class="btn border-success update text-success">Save</button>
 
     </form>
-    <a href="{{ route('progetto.index') }}" class="btn border">Back</a>
+    <a href="{{ route('progetto.index') }}" class="btn border-danger mt-2 text-danger">Back</a>
     </div>
 </x-app-layout>

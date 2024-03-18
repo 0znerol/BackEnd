@@ -27,10 +27,11 @@
         </div>
         <input type="hidden" name="progetto_id" value="{{ $progetto_id }}">
 
-        <button type="submit" class="btn border text-light update">Save</button>
+        <button type="submit" class="btn border-success text-success">Save</button>
 
     </form>
-    <a href="{{ route('progetto.index') }}" class="btn border text-light">Back</a>
+    <a href="{{ route('attivita.show', $progetto_id) }}" class="btn border-warning rounded text-warning mt-2">Back</a>
+
     </div>
    
 <!-- </body>
