@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update</title>
-    <meta name="csrf-token" content="{{csrf_token()}}">
-</head>
 
-<body>
-
+<x-app-layout>
     <form action="{{ route('progetto.update', $progetto->id) }}" method="post"  >
     @csrf
     @method('PUT')
@@ -27,40 +18,9 @@
         <input type="hidden" name="proj_id" value="{{ $progetto->id}}">
         <div class="mb-4">
         </div>
-
+        <button type="submit" class="btn border update text-light">Save</button>
     </form>
-    <button type="submit" class="btn border update">Save</button>
 
-    <a href="{{ route('dashboard') }}" class="btn border">Back</a>
-<script>
-    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    document.querySelector('button.update').addEventListener('click', update);
+    <a href="{{ route('dashboard') }}" class="btn border text-light">Back</a>
+</x-app-layout>
 
-    function update() {
-        let title = document.querySelector('input#title').value;
-        let description = document.querySelector('textarea#description').value;
-        let thumb = document.querySelector('input#thumb').value;
-        let proj_id = document.querySelector('input[name="proj_id"]').value;
-
-        fetch(`http://127.0.0.1:8000/progetto/${proj_id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': token
-            },
-            body: JSON.stringify({
-                title: title,
-                description: description,
-                thumb: thumb
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            window.location.href = `http://localhost:8000/progetto/${proj_id}`;
-        })
-        .catch(error => console.log(error));
-    }
-</script>
-</body>
-</html>

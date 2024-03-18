@@ -1,40 +1,44 @@
 <x-app-layout>
     <div class="p-2">
     <div class="">
-        <a href="{{ route('progetto.create')  }}" class="btn border rounded text-white">Create Progetto</a>
+        <a href="{{ route('progetto.create')  }}" class="btn border-success rounded text-success">Crea Progetto</a>
         </div>
         @if ($progetto->count() > 0)
-            <h1 class="text-white">Progetti</h1>    
-            <table class="table-auto text-white">
+            <table class="table table-dark text-white">
                 <thead>
                     <tr>
-                        <th >Title</th>
-                        <th >Description</th>
+                        <th >Titolo</th>
+                        <th >Descrizione</th>
                         <th >Attivita</th>
-                        <th class="" >Thumbnail</th>
-                        <th >Actions</th>
+                        <th >Thumbnail</th>
+                        <th >Azioni</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($progetto as $prog)
                         <tr>
-                            <td class="border"><a href="{{ route('progetto.show', $prog->id) }}" class="m-auto underline ">{{ $prog->title }}</a></td>
-                            <td class="border">{{ $prog->description }}</td>
-                            <td class="border">
+                            <td><a href="{{ route('progetto.show', $prog->id) }}" class="m-auto underline ">{{ $prog->title }}</a></td>
+                            <td>{{ $prog->description }}</td>
+                            <td>
+                            @if ($prog->attivita->isNotEmpty())
                                 <ul class="list-group p-2">
                                     @foreach ($prog->attivita as $att)
-                                    @if ($att->progetto_id == $prog->id)
-                                    <li class="border-b-2 border-inherit my-3">{{ $att->title }}</li>
-                                    @endif
+                                        @if ($att->progetto_id == $prog->id)
+                                            <li class="border-b-2 border-inherit my-3">{{ $att->title }}</li>
+                                        @endif
                                     @endforeach
                                 </ul>
+                            @else
+                                <p class="text-danger">nessuna attivita trovata</p>
+                                <p class="text-danger">per aggiungere un attivita clicca sul nome</p>
+                            @endif
                             </td>
-                            <td class="border">
+                            <td>
                                 <img src="{{ $prog->thumb }}" alt="{{ $prog->title }}" class="img-fluid" style="min-width:200px; min-height:200px;">
                             </td>
-                            <td class="border">
-                                <a href="{{ route('progetto.edit', $prog->id) }}" class="btn border rounded">Edit</a>
-                                <a type="button" class="btn btn-outline-danger" href="/progetto/{{$prog->id}}/destroy">Delete</a>
+                            <td class="text-center">
+                                    <a type="button" class="btn border-danger rounded text-danger mb-2" href="/progetto/{{$prog->id}}/destroy">Delete</a>
+                                    <a href="{{ route('progetto.edit', $prog->id) }}" class="btn border-warning rounded  text-warning">Edit</a>
                             </td>
                 
                         </tr>

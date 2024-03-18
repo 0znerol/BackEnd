@@ -1,18 +1,7 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
-<body> -->
+
 <x-app-layout>
+    <div class="p-2">
     <h1 class="text-2xl font-bold m-auto mb-5 text-white">Create Progetto</h1>
-    <h1 class="text-2xl font-bold m-auto mb-5 text-white">{{ csrf_token() }}</h1>
 
     <form action="/progetto" method="post">
         @csrf
@@ -35,70 +24,5 @@
 
     </form>
     <a href="{{ route('progetto.index') }}" class="btn border">Back</a>
-
-    <script>
-        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        // document.querySelector('button.update').addEventListener('click', update);
-
-        function update() {
-            let input_title = document.querySelector('input#title').value;
-            let input_description = document.querySelector('textarea#description').value;
-            let input_thumb = document.querySelector('input#thumb').value;
-            let input_proj_id = document.querySelector('input[name="proj_id"]').value;
-
-            const formData = new FormData();
-            formData.append('title', input_title);
-            formData.append('description', input_description);
-            formData.append('thumb', input_thumb);
-            formData.append('proj_id', input_proj_id);
-
-            // Fetch the CSRF token from the server
-            // fetch('http://127.0.0.1:8001/sanctum/csrf-cookie', {
-            //     method: 'GET',
-            //     credentials: 'include'
-            // })
-            // .then(response => {
-            //     // Extract the XSRF-TOKEN cookie from the response
-            //     const xsrfToken = response.headers.get('X-XSRF-TOKEN');
-            //     console.log(response);
-
-            //     // Send the POST request with the XSRF-TOKEN cookie
-            //     fetch('http://127.0.0.1:8001/progetto', {
-            //         method: 'POST',
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //             "Accept": "application/json, text-plain, */*",
-            //             'X-CSRF-TOKEN': token,
-            //             'X-XSRF-TOKEN': xsrfToken
-            //         },
-            //         body: JSON.stringify(Object.fromEntries(formData)),
-            //         credentials: 'include'
-            //     })
-            //     .then(response => response.json())
-            //     .then(data => {
-            //         console.log(data);
-            //     })
-            //     .catch(error => console.log(error));
-            // })
-            // .catch(error => console.log(error));
-            console.log(token)
-
-            fetch('http://127.0.0.1:8000/progetto', {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                        'X-CSRF-TOKEN': token,
-                    },
-                    body: JSON.stringify(Object.formData),
-                    credentials: 'include'
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(error => console.log(error));
-        }
-    </script>
-<!-- </body>
-</html> -->
+    </div>
 </x-app-layout>

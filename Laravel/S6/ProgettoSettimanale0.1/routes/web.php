@@ -37,7 +37,8 @@ Route::middleware('auth')->group(function () {
 Route::resource('progetto', ProgettoController::class)->middleware('auth', 'verified');
 Route::resource('attivita', AttivitaController::class)->middleware('auth', 'verified');
 Route::get('/progetto/{id}/destroy', [ProgettoController::class, 'progdestroy']);
-
+Route::get('/attivita/{id}/destroy', [AttivitaController::class, 'attdestroy']);
+Route::get('attivita/{progetto_id}/create', [AttivitaController::class, 'attcreate'])->name('attCreate');
 require __DIR__ . '/auth.php';
 // Route::resource('/posts', PostController::class);
 // Route::post('/posts/update', [PostController::class, 'postupdate']);
