@@ -3,7 +3,7 @@
     @if($prenotazioni)
         <div class="container">
             <div class="row">
-                <h1 class="text-2xl font-semibold">Prenotazioni in attesa</h1>
+                <h1 class="text-2xl font-semibold p-3">Prenotazioni in attesa</h1>
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'in attesa')
                     <div class="col-4" style="max-height: 480px;">
@@ -19,12 +19,15 @@
                                     </select>
                                     <button type="submit" class="btn btn-danger m-auto text-danger">Update</button>
                                 </form>
-                                <h5 class="card-title
-                                text-xl font-semibold">{{ $prenotazione->stato }}</h5>
-
+                                @foreach($users as $user)
+                                    @if($user->id == $prenotazione->user_id)
+                                        <p class="card-text">Utente: {{ $user->name }}</p>
+                                    @endif
+                                @endforeach
                                 @foreach($corsi as $corso)
                                     @if($corso->id == $prenotazione->corso_id)
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
+                                        <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
                                         <p class="card-text">{{ $corso->description }}</p>
                                     @endif
                                 @endforeach
@@ -33,7 +36,7 @@
                     </div>
                     @endif
                 @endforeach
-                <h1 class="text-2xl font-semibold">Prenotazioni Confermate</h1>
+                <h1 class="text-2xl font-semibold p-3">Prenotazioni Confermate</h1>
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'confermata')
                     <div class="col-4" style="max-height: 480px;">
@@ -49,10 +52,17 @@
                                     </select>
                                     <button type="submit" class="btn btn-danger m-auto text-danger">Update</button>
                                 </form>
-                                <h5 class="card-title text-xl font-semibold">{{ $prenotazione->stato }}</h5>
+                                @foreach($users as $user)
+                                    @if($user->id == $prenotazione->user_id)
+                                        <p class="card-text">Utente: {{ $user->name }}</p>
+                                    @endif
+                                @endforeach
+ 
                                 @foreach($corsi as $corso)
                                     @if($corso->id == $prenotazione->corso_id)
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
+                                        <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
+
                                         <p class="card-text">{{ $corso->description }}</p>
                                     @endif
                                 @endforeach
@@ -61,7 +71,7 @@
                     </div>
                     @endif
                 @endforeach
-                <h1 class="text-2xl font-semibold">Prenotazioni Rifiutate</h1>
+                <h1 class="text-2xl font-semibold p-3">Prenotazioni Rifiutate</h1>
                 @if($prenotazioni->count() > 0)
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'rifiutata')
@@ -78,10 +88,16 @@
                                     </select>
                                     <button type="submit" class="btn btn-danger m-auto text-danger">Update</button>
                                 </form>
-
+                                @foreach($users as $user)
+                                    @if($user->id == $prenotazione->user_id)
+                                        <p class="card-text">Utente: {{ $user->name }}</p>
+                                    @endif
+                                @endforeach
                                 @foreach($corsi as $corso)
                                     @if($corso->id == $prenotazione->corso_id)
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
+                                        <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
+
                                         <p class="card-text">{{ $corso->description }}</p>
                                     @endif
                                 @endforeach

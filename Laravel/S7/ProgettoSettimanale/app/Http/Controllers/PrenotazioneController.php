@@ -67,6 +67,7 @@ class PrenotazioneController extends Controller
         $data = $request->only([
             'stato',
         ]);
+        $data['updated_at'] = Carbon::now();
 
         $queryBuilder = DB::table('prenotaziones')->where('id', $prenotazione->id)->update($data);
 
@@ -86,6 +87,7 @@ class PrenotazioneController extends Controller
         // return view('gestione');
         $prenotazioni = Prenotazione::all();
         $corsi = DB::table('corsos')->whereIn('id', $prenotazioni->pluck('corso_id'))->get();
-        return view('gestione', compact('prenotazioni', 'corsi'));
+        $users = DB::table('users')->whereIn('id', $prenotazioni->pluck('user_id'))->get();
+        return view('gestione', compact('prenotazioni', 'corsi', 'users'));
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCorsoRequest;
 use App\Http\Requests\UpdateCorsoRequest;
 use App\Models\Corso;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CorsoController extends Controller
 {
@@ -13,7 +16,7 @@ class CorsoController extends Controller
      */
     public function index()
     {
-        return view('dashboard', ['corsi' => Corso::all()]);
+        return view('dashboard', ['corsi' => Corso::latest()->get()]);
     }
 
     /**
@@ -21,7 +24,7 @@ class CorsoController extends Controller
      */
     public function create()
     {
-        //
+        return view('corsoCreate');
     }
 
     /**
@@ -29,7 +32,15 @@ class CorsoController extends Controller
      */
     public function store(StoreCorsoRequest $request)
     {
-        //
+        $data = $request->only([
+            'title',
+            'description',
+            'thumb'
+        ]);
+        $data['created_at'] = Carbon::now();
+        $queryBuilder = DB::table('corsos')->insert($data);
+
+        return redirect()->action([CorsoController::class, 'index']);
     }
 
     /**
@@ -45,15 +56,20 @@ class CorsoController extends Controller
      */
     public function edit(Corso $corso)
     {
-        //
+        return view('corsoEdit', ['corso' => $corso]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCorsoRequest $request, Corso $corso)
+    public function update(UpdateCorsoRequest $request, $id)
     {
-        //
+        $corso = Corso::findOrFail($id);
+        $request = $request->only(['title', 'description', 'thumb']);
+        $request['updated_at'] = Carbon::now();
+        $corso->update($request);
+
+        return redirect()->action([CorsoController::class, 'index']);
     }
 
     /**
@@ -61,6 +77,7 @@ class CorsoController extends Controller
      */
     public function destroy(Corso $corso)
     {
-        //
+        $queryBuilder = $corso->delete();
+        return $queryBuilder ? redirect()->action([CorsoController::class, 'index']) : 'Post not found!!!';
     }
 }

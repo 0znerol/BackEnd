@@ -13,6 +13,7 @@
                     <div class="p-6 text-gray-900">
                         <div>{{ Auth::user()->name }} panel</div>
                         <a href="{{ route('gestione') }}" class="btn border mt-3 text-blue-500">Gestisci Prenotazioni</a>
+                        <a href="{{ route('corso.create') }}" class="btn border mt-3 text-blue-500">Aggiungi Corso</a>
                     </div>
                 </div>
             </div>
@@ -35,12 +36,27 @@
                                     <h5 class="card-title text-xl font-semibold">{{ $corso->title }}</h5>
                                     <p class="card-text">{{ $corso->description }}</p>
                                 </div>
+                                @if(Auth::user()->name == 'admin')
+                                <div class="d-flex justify-content-around">
+                                    <form action="{{ route('corso.destroy', $corso) }}" method="post" class="d-flex mb-2">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger m-auto text-danger">Delete</button>
+                                    </form>
+
+                                    <form action="{{ route('corso.edit', $corso->id) }}" method="get" class="d-flex mb-2">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary m-auto text-primary">Edit</button>
+                                    </form>
+                                </div>
+                                @else    
                                 <form action="{{ route('prenotazione.store') }}" method="post" class="d-flex mb-2">
                                     @csrf
                                     @method('POST')
                                     <input type="hidden" name="corso_id" value="{{ $corso->id }}">
                                     <button type="submit" class="btn btn-primary m-auto text-primary">Prenota</button>
                                 </form>
+                                @endif
 
                             </div>
                         </div>
