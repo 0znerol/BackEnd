@@ -37,7 +37,7 @@
                     <input type="radio" id="orario4" name="orario" value="20:00" class="me-3 rounded">
                     </div>
                 </div>
-                <div class="row text-end mt-5 w-100" >
+                <div class="row text-end mt-5 w-100">
                     <button type="submit" class="btn btn-primary text-primary">Prenota</button>
                 </div>
             </form>

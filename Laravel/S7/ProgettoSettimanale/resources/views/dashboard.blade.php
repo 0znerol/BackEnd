@@ -35,7 +35,7 @@
                                 <img src="{{ $corso->thumb }}" class="card-img-top m-auto border rounded" alt="{{ $corso->title }}">
                                 <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                                     <h5 class="card-title text-xl font-semibold">{{ $corso->title }}</h5>
-                                    <p class="card-text">{{ $corso->description }}</p>
+                                    <p class="card-text">{{ Str::limit($corso->description, 100, ' ···[Read More]') }}</p>
                                 </div>
                                 <a href="{{ route('corso.show', $corso->id) }}" class="btn border mt-2 text-primary">Dettaglio</a>
                                 @if(Auth::user()->name == 'admin')
