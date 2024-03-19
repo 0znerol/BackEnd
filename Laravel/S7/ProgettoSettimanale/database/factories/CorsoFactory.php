@@ -20,6 +20,7 @@ class CorsoFactory extends Factory
             'title' => $this->faker->sentence(4),
             'description' => $this->faker->paragraph(),
             'thumb' => $this->faker->imageUrl(),
+            'orari' => 'Martedi e Giovedi-14:00-16:00 Venerdi-16:00-18:00',
         ];
     }
 }

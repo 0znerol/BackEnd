@@ -1,8 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="d-flex">
+            <h2 class="font-semibold text-xl text-center mt-2 text-gray-800 leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+        </div>
+
     </x-slot>
 
     @if(Auth::user()->name == 'admin')
@@ -29,12 +32,14 @@
 
                 <div class="row">
                     @foreach($corsi as $corso)
-                        <div class="col-4  my-3" style="max-height: 480px;">
+                        <div class="col-4  my-3" style="max-height: 600px;">
                             <div class="card m-auto" style="width: 18rem; height: 100%;">
                                 <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
                                 <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                                     <h5 class="card-title text-xl font-semibold">{{ $corso->title }}</h5>
                                     <p class="card-text">{{ $corso->description }}</p>
+                                    <p class="card-text font-semibold text-xl">orari: </p>
+                                    <p>{{ $corso->orari }}</p>
                                 </div>
                                 @if(Auth::user()->name == 'admin')
                                 <div class="d-flex justify-content-around">

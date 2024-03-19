@@ -35,7 +35,8 @@ class CorsoController extends Controller
         $data = $request->only([
             'title',
             'description',
-            'thumb'
+            'thumb',
+            'orari'
         ]);
         $data['created_at'] = Carbon::now();
         $queryBuilder = DB::table('corsos')->insert($data);
@@ -65,7 +66,7 @@ class CorsoController extends Controller
     public function update(UpdateCorsoRequest $request, $id)
     {
         $corso = Corso::findOrFail($id);
-        $request = $request->only(['title', 'description', 'thumb']);
+        $request = $request->only(['title', 'description', 'thumb', 'orari']);
         $request['updated_at'] = Carbon::now();
         $corso->update($request);
 

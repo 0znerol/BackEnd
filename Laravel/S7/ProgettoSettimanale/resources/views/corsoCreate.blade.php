@@ -17,6 +17,16 @@
             <label for="thumb" class="block text-gray-700 text-sm font-bold mb-2">Thumbnail</label>
             <input type="text" id="thumb" name="thumb" value="https://via.placeholder.com/640x480.png/0055cc?text=" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
+
+        <div class="mb-4">
+            <label for="orari" class="block text-gray-700 text-sm font-bold mb-2">Orari</label>
+            <textarea id="orari" name="orari" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+Lunedi e Mercoledi-__:__-__:__, 
+Martedi e Giovedi-__:__-__:__, 
+Venerdi-__:__-__:__
+
+            </textarea>
+        </div>
         <input type="hidden" name="proj_id" value="">
         <div class="mb-4">
         </div>

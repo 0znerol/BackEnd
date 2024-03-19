@@ -29,6 +29,8 @@
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
                                         <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
                                         <p class="card-text">{{ $corso->description }}</p>
+                                        <p class="card-text">orari: </p>
+                                        <p>{{ $corso->orari }}</p>  
                                     @endif
                                 @endforeach
                             </div>
@@ -62,8 +64,9 @@
                                     @if($corso->id == $prenotazione->corso_id)
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
                                         <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
-
                                         <p class="card-text">{{ $corso->description }}</p>
+                                        <p class="card-text">orari: </p>
+                                        <p>{{ $corso->orari }}</p>
                                     @endif
                                 @endforeach
                             </div>
@@ -97,8 +100,9 @@
                                     @if($corso->id == $prenotazione->corso_id)
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
                                         <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
-
                                         <p class="card-text">{{ $corso->description }}</p>
+                                        <p class="card-text">orari: </p>
+                                        <p>{{ $corso->orari }}</p>
                                     @endif
                                 @endforeach
                             </div>
