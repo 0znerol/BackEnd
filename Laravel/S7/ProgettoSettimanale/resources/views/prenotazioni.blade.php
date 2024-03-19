@@ -1,5 +1,12 @@
 <x-app-layout>
+<x-slot name="header">
+        <div class="d-flex">
+            <h2 class="font-semibold text-xl text-center mt-2 text-gray-800 leading-tight">
+                {{ __('Prenotazioni') }}
+            </h2>
+        </div>
 
+    </x-slot>
     @if($prenotazioni)
         <div class="container">
             <div class="row">
@@ -9,13 +16,14 @@
                             <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                                 <h5 class="card-title
                                 text-xl font-semibold">{{ $prenotazione->stato }}</h5>
-
+                                <div class="d-flex justify-content-between">
+                                        <p class="card-text">orario:  {{ $prenotazione->orario }}</p>
+                                    </div>
                                 @foreach($corsi as $corso)
                                     @if($corso->id == $prenotazione->corso_id)
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
                                         <p class="card-text">{{ $corso->description }}</p>
-                                        <p class="card-text">orari: </p>
-                                        <p>{{ $corso->orari }}</p>
+
                                     @endif
                                 @endforeach
                             </div>

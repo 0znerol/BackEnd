@@ -32,14 +32,12 @@ class CorsoController extends Controller
      */
     public function store(StoreCorsoRequest $request)
     {
-        $data = $request->only([
-            'title',
-            'description',
-            'thumb',
-            'orari'
+        $corso = Corso::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'thumb' => $request->thumb,
+            'created_at' => Carbon::now(),
         ]);
-        $data['created_at'] = Carbon::now();
-        $queryBuilder = DB::table('corsos')->insert($data);
 
         return redirect()->action([CorsoController::class, 'index']);
     }

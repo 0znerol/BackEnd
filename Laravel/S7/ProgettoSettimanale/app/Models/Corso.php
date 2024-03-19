@@ -13,6 +13,5 @@ class Corso extends Model
         'title',
         'description',
         'thumb',
-        'orari'
     ];
 }

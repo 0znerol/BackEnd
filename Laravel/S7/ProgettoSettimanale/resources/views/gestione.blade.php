@@ -6,7 +6,7 @@
                 <h1 class="text-2xl font-semibold p-3">Prenotazioni in attesa</h1>
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'in attesa')
-                    <div class="col-4" style="max-height: 480px;">
+                    <div class="col-4  mt-2" style="max-height: 600px;">
                         <div class="card m-auto" style="width: 18rem; height: 100%;">
                             <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                             <form action="{{ route('prenotazione.update', $prenotazione->id) }}" method="post" class="d-flex mb-2">
@@ -17,11 +17,14 @@
                                         <option value="rifiutata">Rifiutata</option>
                                         <option value="in attesa" selected>In attesa</option>
                                     </select>
-                                    <button type="submit" class="btn btn-danger m-auto text-danger">Update</button>
+                                    <button type="submit" class="btn btn-success m-auto text-success">Update</button>
                                 </form>
                                 @foreach($users as $user)
                                     @if($user->id == $prenotazione->user_id)
+                                    <div class="d-flex justify-content-between">
                                         <p class="card-text">Utente: {{ $user->name }}</p>
+                                        <p class="card-text">orario:  {{ $prenotazione->orario }}</p>
+                                    </div>
                                     @endif
                                 @endforeach
                                 @foreach($corsi as $corso)
@@ -29,8 +32,7 @@
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
                                         <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
                                         <p class="card-text">{{ $corso->description }}</p>
-                                        <p class="card-text">orari: </p>
-                                        <p>{{ $corso->orari }}</p>  
+
                                     @endif
                                 @endforeach
                             </div>
@@ -41,7 +43,7 @@
                 <h1 class="text-2xl font-semibold p-3">Prenotazioni Confermate</h1>
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'confermata')
-                    <div class="col-4" style="max-height: 480px;">
+                    <div class="col-4  mt-2" style="max-height: 600px;">
                         <div class="card m-auto" style="width: 18rem; height: 100%;">
                             <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                                 <form action="{{ route('prenotazione.update', $prenotazione->id) }}" method="post" class="d-flex mb-2">
@@ -52,11 +54,14 @@
                                         <option value="rifiutata">Rifiutata</option>
                                         <option value="in attesa">In attesa</option>
                                     </select>
-                                    <button type="submit" class="btn btn-danger m-auto text-danger">Update</button>
+                                    <button type="submit" class="btn btn-success m-auto text-success">Update</button>
                                 </form>
                                 @foreach($users as $user)
                                     @if($user->id == $prenotazione->user_id)
+                                    <div class="d-flex justify-content-between">
                                         <p class="card-text">Utente: {{ $user->name }}</p>
+                                        <p class="card-text">orario:  {{ $prenotazione->orario }}</p>
+                                    </div>
                                     @endif
                                 @endforeach
  
@@ -65,8 +70,7 @@
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
                                         <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
                                         <p class="card-text">{{ $corso->description }}</p>
-                                        <p class="card-text">orari: </p>
-                                        <p>{{ $corso->orari }}</p>
+
                                     @endif
                                 @endforeach
                             </div>
@@ -78,7 +82,7 @@
                 @if($prenotazioni->count() > 0)
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'rifiutata')
-                    <div class="col-4" style="max-height: 480px;">
+                    <div class="col-4  mt-2" style="max-height: 600px;">
                         <div class="card m-auto" style="width: 18rem; height: 100%;">
                             <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                             <form action="{{ route('prenotazione.update', $prenotazione->id) }}" method="post" class="d-flex mb-2">
@@ -89,11 +93,14 @@
                                         <option value="rifiutata" selected>Rifiutata</option>
                                         <option value="in attesa">In attesa</option>
                                     </select>
-                                    <button type="submit" class="btn btn-danger m-auto text-danger">Update</button>
+                                    <button type="submit" class="btn btn-success m-auto text-success">Update</button>
                                 </form>
                                 @foreach($users as $user)
                                     @if($user->id == $prenotazione->user_id)
+                                    <div class="d-flex justify-content-between">
                                         <p class="card-text">Utente: {{ $user->name }}</p>
+                                        <p class="card-text">orario:  {{ $prenotazione->orario }}</p>
+                                    </div>
                                     @endif
                                 @endforeach
                                 @foreach($corsi as $corso)
@@ -101,8 +108,6 @@
                                         <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
                                         <h2 class="card-title text-xl font-semibold">{{ $corso->title }}</h2>
                                         <p class="card-text">{{ $corso->description }}</p>
-                                        <p class="card-text">orari: </p>
-                                        <p>{{ $corso->orari }}</p>
                                     @endif
                                 @endforeach
                             </div>

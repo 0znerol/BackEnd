@@ -38,8 +38,7 @@
                                 <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                                     <h5 class="card-title text-xl font-semibold">{{ $corso->title }}</h5>
                                     <p class="card-text">{{ $corso->description }}</p>
-                                    <p class="card-text font-semibold text-xl">orari: </p>
-                                    <p>{{ $corso->orari }}</p>
+                                    <p class="card-text font-semibold text-xl">Prenota Corso </p>
                                 </div>
                                 @if(Auth::user()->name == 'admin')
                                 <div class="d-flex justify-content-around">
@@ -55,10 +54,24 @@
                                     </form>
                                 </div>
                                 @else    
-                                <form action="{{ route('prenotazione.store') }}" method="post" class="d-flex mb-2">
+                                <form action="{{ route('prenotazione.store') }}" method="post" class="d-flex mb-2 p-2">
                                     @csrf
                                     @method('POST')
                                     <input type="hidden" name="corso_id" value="{{ $corso->id }}">
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 text-sm font-bold mb-2">Orari Disponibili</label>
+                                        <label for="orarion1">09:00</label>
+                                        <input type="radio" id="orario1" name="orario" value="09:00" class="me-3 rounded">
+
+                                        <label for="orarion1">14:00</label>
+                                        <input type="radio" id="orario2" name="orario" value="14:00" class="me-3 rounded">
+
+                                        <label for="orarion1">18:00</label>
+                                        <input type="radio" id="orario3" name="orario" value="18:00" class="me-3 rounded">
+
+                                        <label for="orarion1">20:00</label>
+                                        <input type="radio" id="orario4" name="orario" value="20:00" class="me-3 rounded">
+                                    </div>
                                     <button type="submit" class="btn btn-primary m-auto text-primary">Prenota</button>
                                 </form>
                                 @endif

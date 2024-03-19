@@ -21,7 +21,8 @@ class PrenotazioneFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'corso_id' => Corso::inRandomOrder()->first()->id,
-            'stato' => 'in attesa',
+            'stato' => $this->faker->randomElement(['in attesa', 'confermata', 'annullata']),
+            'orario' => $this->faker->randomElement(['09:00', '14:00', '18:00', '20:00'])
         ];
     }
 }

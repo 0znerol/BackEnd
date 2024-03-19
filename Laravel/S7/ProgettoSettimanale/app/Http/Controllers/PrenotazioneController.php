@@ -16,7 +16,7 @@ class PrenotazioneController extends Controller
      */
     public function index()
     {
-        $prenotazioni = Prenotazione::where('user_id', Auth::id())->get();
+        $prenotazioni = Prenotazione::where('user_id', Auth::id())->latest()->get();
         $corsi = DB::table('corsos')->whereIn('id', $prenotazioni->pluck('corso_id'))->get();
         return view('prenotazioni', compact('prenotazioni', 'corsi'));
     }
@@ -33,6 +33,7 @@ class PrenotazioneController extends Controller
     {
         $data = $request->only([
             'corso_id',
+            'orario',
         ]);
         $data['user_id'] = Auth::id();
         $data['stato'] = 'in attesa';

@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->foreign('user_id')->on('users')->references('id')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id');
             $table->enum('stato', ['in attesa', 'confermata', 'rifiutata']);
+            $table->enum('orario', ['09:00', '14:00', '18:00', '20:00']);
             $table->timestamps();
         });
     }
