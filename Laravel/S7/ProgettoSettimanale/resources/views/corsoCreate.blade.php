@@ -1,7 +1,14 @@
 
 <x-app-layout>
+<x-slot name="header">
+        <div class="d-flex">
+            <h2 class="font-semibold text-xl text-center mt-2 text-gray-800 leading-tight">
+                {{ __('Admin/Aggiungi Corso') }}
+            </h2>
+        </div>
+
+    </x-slot>
     <div class="p-2">
-    <h1 class="text-2xl font-bold m-auto mb-5 text-white">Create Progetto</h1>
 
     <form action="/corso" method="post">
         @csrf

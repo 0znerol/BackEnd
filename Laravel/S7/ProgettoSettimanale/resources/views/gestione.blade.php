@@ -1,9 +1,18 @@
 <x-app-layout>
+<x-slot name="header">
+        <div class="d-flex">
+            <h2 class="font-semibold text-xl text-center mt-2 text-gray-800 leading-tight">
+                {{ __('Admin/Gestione Prenotazioni') }}
+            </h2>
+        </div>
 
+    </x-slot>
     @if($prenotazioni)
-        <div class="container">
+        <div class="container mt-2">
             <div class="row">
-                <h1 class="text-2xl font-semibold p-3">Prenotazioni in attesa</h1>
+                <div class="text-center mt-1"> 
+                    <h1 class="text-2xl font-semibold p-3 text-warning border border-warning rounded">Prenotazioni in attesa</h1>
+                </div>
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'in attesa')
                     <div class="col-md-6 col-lg-4  my-3" style="max-height: 600px;">
@@ -40,7 +49,9 @@
                     </div>
                     @endif
                 @endforeach
-                <h1 class="text-2xl font-semibold p-3">Prenotazioni Confermate</h1>
+                <div class="text-center"> 
+                    <h1 class="text-2xl font-semibold p-3 text-success border border-success rounded">Prenotazioni Confermate</h1>
+                </div>
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'confermata')
                     <div class="col-md-6 col-lg-4  my-3" style="max-height: 600px;">
@@ -78,7 +89,9 @@
                     </div>
                     @endif
                 @endforeach
-                <h1 class="text-2xl font-semibold p-3">Prenotazioni Rifiutate</h1>
+                <div class="text-center"> 
+                    <h1 class="text-2xl font-semibold p-3 text-danger border border-danger rounded">Prenotazioni Rifiutate</h1>
+                </div>
                 @if($prenotazioni->count() > 0)
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'rifiutata')

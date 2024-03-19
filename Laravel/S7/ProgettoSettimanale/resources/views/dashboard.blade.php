@@ -27,7 +27,7 @@
     <div>
         @if($corsi->count() > 0)
 
-            <div class="container">
+            <div class="container mt-4">
             <h5 class="card-title text-xl font-semibold">Corsi</h5>
 
                 <div class="row">
@@ -62,7 +62,7 @@
                                     @csrf
                                     @method('POST')
                                     <input type="hidden" name="corso_id" value="{{ $corso->id }}">
-                                    <div class="mb-4">
+                                    <div >
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Orari Disponibili</label>
                                         <label for="orarion1">09:00</label>
                                         <input type="radio" id="orario1" name="orario" value="09:00" class="me-3 rounded">
