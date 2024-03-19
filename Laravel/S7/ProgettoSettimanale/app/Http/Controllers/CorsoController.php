@@ -47,7 +47,7 @@ class CorsoController extends Controller
      */
     public function show(Corso $corso)
     {
-        //
+        return view('corsoDett', ['corso' => $corso]);
     }
 
     /**

@@ -21,9 +21,7 @@
                 </div>
             </div>
         </div>
-
     @endif
-
     <div>
         @if($corsi->count() > 0)
 
@@ -39,6 +37,7 @@
                                     <h5 class="card-title text-xl font-semibold">{{ $corso->title }}</h5>
                                     <p class="card-text">{{ $corso->description }}</p>
                                 </div>
+                                <a href="{{ route('corso.show', $corso->id) }}" class="btn border mt-2 text-primary">Dettaglio</a>
                                 @if(Auth::user()->name == 'admin')
                                 <div class="d-flex justify-content-around">
 
@@ -62,7 +61,7 @@
                                     @csrf
                                     @method('POST')
                                     <input type="hidden" name="corso_id" value="{{ $corso->id }}">
-                                    <div >
+                                    <div>
                                         <label class="block text-gray-700 text-sm font-bold mb-2">Orari Disponibili</label>
                                         <label for="orarion1">09:00</label>
                                         <input type="radio" id="orario1" name="orario" value="09:00" class="me-3 rounded">
