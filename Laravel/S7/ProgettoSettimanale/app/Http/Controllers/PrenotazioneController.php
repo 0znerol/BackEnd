@@ -80,7 +80,8 @@ class PrenotazioneController extends Controller
      */
     public function destroy(Prenotazione $prenotazione)
     {
-        //
+        $queryBuilder = $prenotazione->delete();
+        return $queryBuilder ? redirect()->action([PrenotazioneController::class, 'index']) : 'Post not found!!!';
     }
 
     public function gestione()

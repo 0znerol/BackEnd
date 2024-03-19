@@ -6,7 +6,7 @@
                 <h1 class="text-2xl font-semibold p-3">Prenotazioni in attesa</h1>
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'in attesa')
-                    <div class="col-4  mt-2" style="max-height: 600px;">
+                    <div class="col-md-6 col-lg-4  my-3" style="max-height: 600px;">
                         <div class="card m-auto" style="width: 18rem; height: 100%;">
                             <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                             <form action="{{ route('prenotazione.update', $prenotazione->id) }}" method="post" class="d-flex mb-2">
@@ -43,7 +43,7 @@
                 <h1 class="text-2xl font-semibold p-3">Prenotazioni Confermate</h1>
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'confermata')
-                    <div class="col-4  mt-2" style="max-height: 600px;">
+                    <div class="col-md-6 col-lg-4  my-3" style="max-height: 600px;">
                         <div class="card m-auto" style="width: 18rem; height: 100%;">
                             <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                                 <form action="{{ route('prenotazione.update', $prenotazione->id) }}" method="post" class="d-flex mb-2">
@@ -82,7 +82,7 @@
                 @if($prenotazioni->count() > 0)
                 @foreach($prenotazioni as $prenotazione)
                     @if($prenotazione->stato == 'rifiutata')
-                    <div class="col-4  mt-2" style="max-height: 600px;">
+                    <div class="col-md-6 col-lg-4  my-3" style="max-height: 600px;">
                         <div class="card m-auto" style="width: 18rem; height: 100%;">
                             <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                             <form action="{{ route('prenotazione.update', $prenotazione->id) }}" method="post" class="d-flex mb-2">

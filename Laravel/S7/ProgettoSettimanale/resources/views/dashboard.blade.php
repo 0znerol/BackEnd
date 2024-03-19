@@ -32,16 +32,16 @@
 
                 <div class="row">
                     @foreach($corsi as $corso)
-                        <div class="col-4  my-3" style="max-height: 600px;">
-                            <div class="card m-auto" style="width: 18rem; height: 100%;">
-                                <img src="{{ $corso->thumb }}" class="card-img-top" alt="{{ $corso->title }}">
+                        <div class="col-md-6 col-lg-4  my-3" style="max-height: 600px;">
+                            <div class="card m-auto " style="width: 18rem; height: 100%;">
+                                <img src="{{ $corso->thumb }}" class="card-img-top m-auto border rounded" alt="{{ $corso->title }}">
                                 <div class="card-body d-flex flex-column p-0 px-1  " style="height: 50%;">
                                     <h5 class="card-title text-xl font-semibold">{{ $corso->title }}</h5>
                                     <p class="card-text">{{ $corso->description }}</p>
-                                    <p class="card-text font-semibold text-xl">Prenota Corso </p>
                                 </div>
                                 @if(Auth::user()->name == 'admin')
                                 <div class="d-flex justify-content-around">
+
                                     <form action="{{ route('corso.destroy', $corso) }}" method="post" class="d-flex mb-2">
                                         @csrf
                                         @method('DELETE')
@@ -54,6 +54,10 @@
                                     </form>
                                 </div>
                                 @else    
+                                <div class="m-2 p-1 border rounded">
+
+                                <p class="card-text font-semibold text-xl">Prenota Corso </p>
+
                                 <form action="{{ route('prenotazione.store') }}" method="post" class="d-flex mb-2 p-2">
                                     @csrf
                                     @method('POST')
@@ -74,6 +78,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary m-auto text-primary">Prenota</button>
                                 </form>
+                                </div>
                                 @endif
 
                             </div>
